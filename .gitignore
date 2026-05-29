@@ -1,0 +1,8 @@
+node_modules
+npm-debug.log*
+.DS_Store
+contacts.txt
+contacts.json
+ratings.txt
+ratings.json
+.env

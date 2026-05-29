@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gursimran Singh — Portfolio</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="nav">
+    <a class="logo" href="index.html"><span class="logo-mark">GS</span><span class="logo-label">Portfolio</span></a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="features.html">Features</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-left">
+        <h1>Build premium client web experiences.</h1>
+        <p class="lead">Professional portfolio development with 2.5+ years of delivery, modern design, and fast performance.</p>
+        <div class="cta">
+          <a class="btn" href="projects.html">See Projects</a>
+          <a class="btn ghost" href="contact.html">Hire Me</a>
+        </div>
+        <ul class="bullets">
+          <li>Mechanic booking demo: Ishawar Autos</li>
+          <li>Custom music player demo for client</li>
+        </ul>
+      </div>
+      <div class="hero-right">
+        <div class="card card-anim">
+          <h3>2.5+ years</h3>
+          <p>Experience delivering clean, polished web applications.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="projects" id="projects">
+      <h2>Featured Projects</h2>
+      <div class="grid">
+        <article class="project">
+          <h3>Ishawar Autos</h3>
+          <p>Mechanic booking platform demo for a client — bookings, service list.</p>
+        </article>
+        <article class="project">
+          <h3>Music Player</h3>
+          <p>Custom-branded music player with playlists and mobile-first UI.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="reviews">
+      <h2>Client Reviews</h2>
+      <div class="review-list">
+        <div class="review">"Gursimran understood the brief quickly and delivered a clean, modern UI that our clients love." — Ishawar Autos</div>
+        <div class="review">"The music player demo feels premium and works beautifully on mobile. Excellent attention to detail." — Local studio</div>
+        <div class="review">"The portfolio experience is polished and the contact flow made it easy for us to reach out." — Client partner</div>
+      </div>
+    </section>
+
+    <div id="ratingPopup" class="popup-overlay" aria-hidden="true">
+      <div class="popup-card">
+        <h3>Share your rating</h3>
+        <p>Select the stars and submit your score.</p>
+        <div id="ratingStatus" class="rating-status"></div>
+        <div class="stars popup-stars">
+          <button data-value="1">★</button>
+          <button data-value="2">★</button>
+          <button data-value="3">★</button>
+          <button data-value="4">★</button>
+          <button data-value="5">★</button>
+        </div>
+        <div class="form-actions">
+          <button id="submitRating" class="btn small">Submit rating</button>
+          <button id="closePopup" class="btn small ghost">Close</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <div>
+      <strong>Gursimran Singh</strong> — 2.5+ years experience
+      <div>Phone: <a href="tel:9988113050">9988113050</a></div>
+    </div>
+    <div class="socials">
+      <a class="btn small" href="https://wa.me/9988113050?text=Hello%20Gursimran">WhatsApp</a>
+      <a class="btn small" href="https://instagram.com/gursimran_singh_pb10" target="_blank">Instagram</a>
+      <a class="btn small" href="https://www.linkedin.com/in/gursimran-singh-9b2a48394" target="_blank">LinkedIn</a>
+      <button id="openRatingPopup" class="btn small">Rate</button>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact — Gursimran Singh</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="nav">
+    <a class="logo" href="index.html"><span class="logo-mark">GS</span><span class="logo-label">Portfolio</span></a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="features.html">Features</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <main class="page contact-page">
+    <h1>Contact Me</h1>
+    <p>I'd love to hear about your project. Fill this form — submissions are stored on this computer.</p>
+    <form id="contactForm">
+      <label>Name<input name="name" required></label>
+      <label>Phone<input name="phone" required></label>
+      <label>Email<input name="email" type="email"></label>
+      <label>Message<textarea name="message" required></textarea></label>
+      <div class="form-actions">
+        <button type="submit" class="btn">Send</button>
+        <a class="btn ghost" href="https://wa.me/9988113050?text=Hello%20Gursimran">Chat on WhatsApp</a>
+      </div>
+      <div id="status" role="status"></div>
+    </form>
+  </main>
+
+  <footer class="site-footer small">
+    <div>Phone: <a href="tel:9988113050">9988113050</a></div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>

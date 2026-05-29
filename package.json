@@ -1,0 +1,12 @@
+{
+  "name": "gursimran-portfolio",
+  "version": "1.0.0",
+  "description": "Portfolio website for Gursimran Singh — contact storage locally",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
