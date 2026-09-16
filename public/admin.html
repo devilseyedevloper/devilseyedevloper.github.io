@@ -1,54 +1,59 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Admin — Portfolio</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admin — Singh Web Creations</title>
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    .admin-shell { max-width: 1180px; margin: 0 auto; padding: 70px 24px; }
+    .admin-card { max-width: 480px; margin: 40px auto; padding: 30px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-md); }
+    .admin-form { display: grid; gap: 16px; }
+    .admin-form label { display: grid; gap: 6px; color: var(--text-muted); }
+    .admin-form input { width: 100%; padding: 13px 14px; border: 1px solid var(--card-border); border-radius: 8px; background: rgba(255,255,255,.06); color: var(--text-main); }
+    .admin-status { min-height: 24px; color: var(--accent-pink); }
+    .admin-header, .admin-row { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+    .admin-header { margin-bottom: 24px; }
+    .admin-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+    .admin-panel { padding: 22px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-md); }
+    .admin-list { display: grid; gap: 12px; margin-top: 16px; }
+    .admin-row { align-items: flex-start; padding: 14px; background: rgba(255,255,255,.04); border-radius: 8px; }
+    .admin-row p { margin: 4px 0 0; color: var(--text-muted); font-size: .9rem; }
+    .admin-row button { flex: 0 0 auto; }
+    .admin-actions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+    .admin-panel-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+    .admin-panel-heading select { min-width: 140px; padding: 10px; border: 1px solid var(--card-border); border-radius: 8px; background: var(--card-bg); color: var(--text-main); }
+    .admin-muted { color: var(--text-muted); }
+    @media (max-width: 760px) { .admin-grid { grid-template-columns: 1fr; } .admin-header { align-items: flex-start; flex-direction: column; } }
+  </style>
 </head>
 <body>
-  <header class="nav">
-    <a class="logo" href="index.html"><span class="logo-mark">GS</span><span class="logo-label">Portfolio</span></a>
-    <nav>
-      <a href="index.html">01 Home</a>
-      <a href="projects.html">02 Projects</a>
-      <a href="features.html">03 Features</a>
-      <a href="contact.html">04 Contact</a>
-    </nav>
-  </header>
-
-  <main class="page admin-login">
-    <div class="admin-panel">
-      <h1>Admin Sign In</h1>
-      <p>Enter your credentials to access the contact database.</p>
-      <form id="adminLoginForm">
-        <label>Username<input name="username" type="text" required placeholder="Username"></label>
-        <label>Password<input name="password" type="password" required placeholder="Password"></label>
-        <div class="form-actions">
-          <button class="btn" type="submit">Sign In</button>
-        </div>
+  <main class="admin-shell">
+    <section id="loginPanel" class="admin-card">
+      <span class="section-tag">Private Area</span>
+      <h1>Admin Login</h1>
+      <p class="admin-muted">Use the server-configured admin credentials.</p>
+      <form id="loginForm" class="admin-form">
+        <label>Username<input id="username" name="username" autocomplete="username" required></label>
+        <label>Password<input id="password" name="password" type="password" autocomplete="current-password" required></label>
+        <button class="btn btn-primary" type="submit">Sign in</button>
       </form>
-      <div id="adminStatus"></div>
-    </div>
+      <p id="loginStatus" class="admin-status" role="alert"></p>
+    </section>
 
-    <div id="adminDashboard" class="admin-dashboard" style="display:none;">
-      <div class="admin-panel">
-        <h1>Contact Records</h1>
-        <p>Use this dashboard to review and delete saved client inquiries.</p>
-        <div class="admin-actions">
-          <button id="logoutBtn" class="btn ghost">Sign Out</button>
-        </div>
-        <div id="dashboardStatus"></div>
-        <table class="contact-table">
-          <thead>
-            <tr><th>ID</th><th>Name</th><th>Phone</th><th>Email</th><th>Message</th><th>Time</th><th>Action</th></tr>
-          </thead>
-          <tbody id="contactRows"></tbody>
-        </table>
+    <section id="dashboard" hidden>
+      <div class="admin-header"><div><span class="section-tag">Private Area</span><h1>Website Control Center</h1><p class="admin-muted">Moderate reviews and messages, block visitors, and hide project screenshots.</p></div><button id="logoutButton" class="btn btn-secondary">Log out</button></div>
+      <p id="dashboardStatus" class="admin-status" role="status"></p>
+      <div class="admin-grid">
+        <section class="admin-panel"><h2>Registered Users</h2><p class="admin-muted">View accounts, block access, or permanently delete users.</p><div id="usersList" class="admin-list"></div></section>
+        <section class="admin-panel admin-orders-panel"><div class="admin-panel-heading"><div><h2>Website Orders</h2><p class="admin-muted">Review requests and update their progress.</p></div><select id="orderStatusFilter" aria-label="Filter orders"><option value="all">All orders</option><option value="pending">Pending</option><option value="cleared">Cleared</option><option value="completed">Completed</option></select></div><div id="ordersList" class="admin-list"></div></section>
+        <section class="admin-panel"><h2>Feedback</h2><div id="reviewsList" class="admin-list"></div></section>
+        <section class="admin-panel"><h2>Contact Messages</h2><div id="messagesList" class="admin-list"></div></section>
+        <section class="admin-panel"><h2>Blocked Visitors</h2><form id="blockForm" class="admin-form"><label>Identifier<input id="blockIdentifier" placeholder="email, IP, or identifier" required></label><label>Reason<input id="blockReason" placeholder="Optional reason"></label><button class="btn btn-secondary" type="submit">Block visitor</button></form><div id="blockedList" class="admin-list"></div></section>
+        <section class="admin-panel"><h2>Project Screenshots</h2><p class="admin-muted">Hide a screenshot from the public site by entering its path, for example <code>images/demo-saas-dashboard.svg</code>.</p><form id="screenshotForm" class="admin-form"><label>Public image path<input id="screenshotPath" placeholder="images/example.svg" required></label><button class="btn btn-secondary" type="submit">Hide screenshot</button></form><div id="screenshotsList" class="admin-list"></div></section>
       </div>
-    </div>
+    </section>
   </main>
-
-  <script src="js/main.js"></script>
+  <script src="js/admin.js"></script>
 </body>
 </html>

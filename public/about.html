@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Learn more about Gursimran Singh, Full-Stack Web Developer and UI Designer. Discover my development philosophy, experience timeline, and background.">
+  <title>About Me — Singh Web Creations</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Supabase Client SDK & Configuration -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+</head>
+<body>
+  <!-- Mobile Navigation Backdrop & Drawer -->
+  <div class="mobile-drawer-backdrop"></div>
+  <aside class="mobile-nav-drawer" aria-label="Mobile navigation">
+    <a href="index.html"><span>🏠</span> Home</a>
+    <a href="about.html" class="active"><span>👤</span> About</a>
+    <a href="skills.html"><span>⚡</span> Skills</a>
+    <a href="projects.html"><span>💼</span> Projects</a>
+    <a href="features.html"><span>⚙️</span> Services</a>
+    <a href="pricing.html"><span>₹</span> Pricing</a>
+    <a href="reviews.html"><span>⭐</span> Reviews</a>
+    <a href="contact.html"><span>✉️</span> Contact</a>
+    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 10px;">
+      <a class="btn btn-primary" href="contact.html">Let's Talk</a>
+      <a class="btn btn-secondary" href="Gursimran Singh Resume.pdf" download="Gursimran Singh Resume.pdf" target="_blank" rel="noopener noreferrer">Download Resume</a>
+    </div>
+  </aside>
+
+  <!-- Sticky Header -->
+  <header class="nav">
+    <div class="nav-brand">
+      <a class="logo" href="index.html">
+        <span class="logo-mark"><img src="images/logo.png" alt="SWC Logo"></span>
+        <span class="logo-label">Singh Web Creations</span>
+      </a>
+    </div>
+
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="index.html">Home</a>
+      <a href="about.html" class="active">About</a>
+      <a href="skills.html">Skills</a>
+      <a href="projects.html">Projects</a>
+      <a href="features.html">Services</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="reviews.html">Reviews</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a class="btn btn-secondary nav-auth-link" href="auth.html">Log in / Sign up</a>
+      <a class="btn btn-primary nav-cta" href="contact.html">Let's Talk</a>
+      <button class="hamburger-btn" aria-label="Toggle mobile menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="page">
+    <!-- Page Header -->
+    <section class="page-header">
+      <span class="section-tag">Developer Profile</span>
+      <h1>About Gursimran Singh</h1>
+      <p class="page-subtitle">Full-Stack Web Developer &amp; UI Designer passionate about crafting ultra-fast, user-focused digital products.</p>
+    </section>
+
+    <!-- Bio & Portrait Grid -->
+    <section class="about-hero-grid">
+      <aside class="about-photo-wrapper">
+        <div class="photo-wrapper" style="margin: 0 auto 16px;">
+          <div class="photo-ring"></div>
+          <div class="photo-placeholder">
+            <img src="images/WhatsApp Image 2026-05-28 at 13.08.14 (1).jpeg" alt="Gursimran Singh" class="profile-photo">
+          </div>
+        </div>
+
+        <h3 style="font-size: 1.35rem; margin-bottom: 4px;">Gursimran Singh <span class="verified-icon" title="Verified Full-Stack Web Developer">✓</span></h3>
+        <p style="color: var(--accent-cyan); font-weight: 500; font-size: 0.92rem; margin-bottom: 12px;">Full-Stack Web Developer &amp; UI Specialist</p>
+        
+        <div style="display: inline-flex; align-items: center; gap: 8px; font-size: 0.82rem; color: var(--text-dim); margin-bottom: 20px;">
+          <span>📍 Punjab, India</span>
+          <span>●</span>
+          <span style="color: var(--accent-emerald);">● Remote Worldwide</span>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">
+          <a class="btn btn-primary" href="contact.html">Get in Touch →</a>
+          <a class="btn btn-secondary" href="Gursimran Singh Resume.pdf" download="Gursimran Singh Resume.pdf" target="_blank" rel="noopener noreferrer">📄 Download Resume</a>
+          <button class="btn-copy" data-copy="gursimransingh240608@gmail.com" title="Click to copy email">
+            <span>📋 Copy Email</span>
+          </button>
+        </div>
+
+        <div class="socials" style="justify-content: center; margin-top: 12px;">
+          <a class="btn small" href="https://wa.me/9988113050?text=Hello%20Gursimran" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a class="btn small" href="https://github.com/gursimransingh24060" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a class="btn small" href="https://www.linkedin.com/in/gursimran-singh-9b2a48394" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
+      </aside>
+
+      <div class="about-content-card">
+        <p class="about-lead-intro">
+          I am a <strong>Full-Stack Web Developer</strong> dedicated to turning complex business concepts into clean, high-performance web applications that convert visitors into loyal clients.
+        </p>
+
+        <div class="about-prose">
+          <p>
+            With over <strong>2.5+ years of dedicated web development experience</strong>, I specialize in combining modern frontend engineering (HTML5, CSS3, modern JavaScript) with resilient backend architectures (Node.js, Express, MongoDB, Supabase).
+          </p>
+          <p>
+            My philosophy centers on the belief that a website shouldn't just look visually compelling—it must load instantly, navigate intuitively on any screen dimension, and provide rock-solid reliability under the hood. Whether building client booking platforms like <em>Ishawar Autos</em>, interactive media applications, or high-conversion business portfolios, I take end-to-end ownership of the development lifecycle.
+          </p>
+          <p>
+            When I'm not writing clean code or tuning CSS animations, I continually experiment with emerging web technologies, headless databases, micro-interactions, and accessibility standards to ensure every deliverable surpasses production benchmarks.
+          </p>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="quick-stats" style="margin-top: 36px;">
+          <div class="stat">
+            <div class="stat-number" data-target="2.5" data-suffix="+">2.5+</div>
+            <div class="stat-label">Years Experience</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number" data-target="10" data-suffix="+">10+</div>
+            <div class="stat-label">Projects Built</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number" data-target="100" data-suffix="%">100%</div>
+            <div class="stat-label">Responsive Layouts</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number" data-target="1" data-prefix="&lt;" data-suffix="s">&lt;1s</div>
+            <div class="stat-label">Fast Load Speeds</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Engineering Principles / Philosophy -->
+    <section style="margin: 60px 0;">
+      <div class="section-header">
+        <span class="section-tag">Core Values</span>
+        <h2>My Development Philosophy</h2>
+        <p class="section-subtitle">The four pillars guiding every line of code and interface I design</p>
+      </div>
+
+      <div class="philosophy-grid">
+        <article class="philosophy-card">
+          <span class="philosophy-icon">⚡</span>
+          <h3>Performance as a Feature</h3>
+          <p>Sub-second load speeds, lightweight vanilla architecture, and zero unnecessary bloat ensure top SEO rankings and instant user engagement.</p>
+        </article>
+
+        <article class="philosophy-card">
+          <span class="philosophy-icon">🎨</span>
+          <h3>Pixel-Perfect Fluid Design</h3>
+          <p>Every interface is engineered mobile-first with smooth micro-interactions, consistent design tokens, and flawless cross-browser fidelity.</p>
+        </article>
+
+        <article class="philosophy-card">
+          <span class="philosophy-icon">🛡️</span>
+          <h3>Scalable Architecture</h3>
+          <p>Clean separation of concerns, modular JavaScript, resilient database models, and robust RESTful APIs built for long-term maintainability.</p>
+        </article>
+
+        <article class="philosophy-card">
+          <span class="philosophy-icon">🤝</span>
+          <h3>Transparent Collaboration</h3>
+          <p>Direct communication, live milestone previews, transparent pricing, and ongoing post-launch technical support for complete peace of mind.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Career & Milestone Timeline -->
+    <section class="timeline-section">
+      <div class="section-header">
+        <span class="section-tag">Track Record</span>
+        <h2>Experience &amp; Milestones</h2>
+        <p class="section-subtitle">Key highlights from my journey in web development and client solutions</p>
+      </div>
+
+      <div class="timeline-track">
+        <!-- Milestone 1 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <div>
+                <h3 class="timeline-role">Independent Full-Stack Developer &amp; Consultant</h3>
+                <span class="timeline-org">Singh Web Creations — Freelance</span>
+              </div>
+              <span class="timeline-date">2024 — Present</span>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px;">
+              Architecting full-stack digital products, custom booking systems, client portals, and responsive websites for real-world businesses. Delivered client solutions such as Ishawar Autos (automotive booking platform) and interactive web applications with real-time database integrations.
+            </p>
+            <div class="tech-list">
+              <span class="tech-badge">Node.js</span>
+              <span class="tech-badge">Express</span>
+              <span class="tech-badge">Supabase</span>
+              <span class="tech-badge">MongoDB</span>
+              <span class="tech-badge">Vanilla JS</span>
+              <span class="tech-badge">CSS3</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Milestone 2 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <div>
+                <h3 class="timeline-role">Web Application Developer &amp; UI Specialist</h3>
+                <span class="timeline-org">Client Work &amp; Interactive Applications</span>
+              </div>
+              <span class="timeline-date">2023 — 2024</span>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px;">
+              Designed and implemented interactive web experiences including a custom HTML5 Web Audio streaming player with dynamic playlist management, state persistence, and responsive controls. Focused on front-end performance, fluid CSS animations, and modular codebases.
+            </p>
+            <div class="tech-list">
+              <span class="tech-badge">Web Audio API</span>
+              <span class="tech-badge">JavaScript (ES6+)</span>
+              <span class="tech-badge">CSS Grid &amp; Flexbox</span>
+              <span class="tech-badge">Responsive UI</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Milestone 3 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <div>
+                <h3 class="timeline-role">Frontend Foundations &amp; Software Exploration</h3>
+                <span class="timeline-org">Self-Directed Intensive Engineering</span>
+              </div>
+              <span class="timeline-date">2022 — 2023</span>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px;">
+              Mastered semantic HTML5, modern CSS architecture, responsive layout patterns, Git version control, and algorithms in JavaScript. Built foundational portfolio projects and established production workflows.
+            </p>
+            <div class="tech-list">
+              <span class="tech-badge">HTML5</span>
+              <span class="tech-badge">CSS3</span>
+              <span class="tech-badge">Git &amp; GitHub</span>
+              <span class="tech-badge">DOM Manipulation</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-final">
+      <h2>Let's Collaborate on Your Next Venture</h2>
+      <p>Whether you need a brand-new website, an end-to-end web app, or an expert code review, I'm ready to help.</p>
+      <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+        <a href="contact.html" class="btn btn-primary btn-large">Start a Conversation →</a>
+        <a href="projects.html" class="btn btn-secondary btn-large">Explore My Work</a>
+        <a href="https://wa.me/9988113050?text=Hello%20Gursimran,%20I%20read%20your%20about%20page%20and%20would%20like%20to%20connect" class="btn btn-secondary btn-large" target="_blank" rel="noopener noreferrer">💬 Chat on WhatsApp</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h4>Singh Web Creations</h4>
+        <p>Full-Stack Web Developer &amp; UI Specialist</p>
+        <div class="footer-contact-item">
+          <span>📞</span> Phone: <a href="tel:9988113050">9988113050</a>
+        </div>
+        <div class="footer-contact-item">
+          <span>✉️</span> Email: <a href="mailto:gursimransingh240608@gmail.com">gursimransingh240608@gmail.com</a>
+        </div>
+      </div>
+
+      <div>
+        <h4 style="color: #ffffff; margin-bottom: 12px; font-size: 1.05rem;">Quick Links</h4>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <a href="index.html" style="color: var(--text-muted); text-decoration: none;">Home</a>
+          <a href="about.html" style="color: var(--text-muted); text-decoration: none;">About Me</a>
+          <a href="skills.html" style="color: var(--text-muted); text-decoration: none;">Technical Skills</a>
+          <a href="projects.html" style="color: var(--text-muted); text-decoration: none;">Projects Showcase</a>
+          <a href="features.html" style="color: var(--text-muted); text-decoration: none;">Services</a>
+          <a href="pricing.html" style="color: var(--text-muted); text-decoration: none;">Pricing Plans</a>
+          <a href="reviews.html" style="color: var(--text-muted); text-decoration: none;">Client Reviews</a>
+          <a href="contact.html" style="color: var(--text-muted); text-decoration: none;">Get in Touch</a>
+          <a href="auth.html" style="color: var(--text-muted); text-decoration: none;">Log in / Sign up</a>
+        </div>
+      </div>
+
+      <div>
+        <h4 style="color: #ffffff; margin-bottom: 12px; font-size: 1.05rem;">Connect Directly</h4>
+        <div class="socials">
+          <a class="btn small" href="https://wa.me/9988113050?text=Hello%20Gursimran" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a class="btn small" href="https://instagram.com/gursimran_singh_pb10" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a class="btn small" href="https://www.linkedin.com/in/gursimran-singh-9b2a48394" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a class="btn small" href="https://github.com/gursimransingh24060" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2024–2026 Singh Web Creations. Crafted with precision &amp; modern code.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

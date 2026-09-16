@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Explore the technical skills, frameworks, databases, and development tools mastered by Gursimran Singh. Node.js, Express, JavaScript, Supabase, MongoDB, and modern frontend craft.">
+  <title>Technical Skills — Singh Web Creations</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Supabase Client SDK & Configuration -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+</head>
+<body>
+  <!-- Mobile Navigation Backdrop & Drawer -->
+  <div class="mobile-drawer-backdrop"></div>
+  <aside class="mobile-nav-drawer" aria-label="Mobile navigation">
+    <a href="index.html"><span>🏠</span> Home</a>
+    <a href="about.html"><span>👤</span> About</a>
+    <a href="skills.html" class="active"><span>⚡</span> Skills</a>
+    <a href="projects.html"><span>💼</span> Projects</a>
+    <a href="features.html"><span>⚙️</span> Services</a>
+    <a href="pricing.html"><span>₹</span> Pricing</a>
+    <a href="reviews.html"><span>⭐</span> Reviews</a>
+    <a href="contact.html"><span>✉️</span> Contact</a>
+    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 10px;">
+      <a class="btn btn-primary" href="contact.html">Let's Talk</a>
+      <a class="btn btn-secondary" href="Gursimran Singh Resume.pdf" download="Gursimran Singh Resume.pdf" target="_blank" rel="noopener noreferrer">Download Resume</a>
+    </div>
+  </aside>
+
+  <!-- Sticky Header -->
+  <header class="nav">
+    <div class="nav-brand">
+      <a class="logo" href="index.html">
+        <span class="logo-mark"><img src="images/logo.png" alt="SWC Logo"></span>
+        <span class="logo-label">Singh Web Creations</span>
+      </a>
+    </div>
+
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="skills.html" class="active">Skills</a>
+      <a href="projects.html">Projects</a>
+      <a href="features.html">Services</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="reviews.html">Reviews</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a class="btn btn-secondary nav-auth-link" href="auth.html">Log in / Sign up</a>
+      <a class="btn btn-primary nav-cta" href="contact.html">Let's Talk</a>
+      <button class="hamburger-btn" aria-label="Toggle mobile menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="page">
+    <!-- Page Header -->
+    <section class="page-header">
+      <span class="section-tag">Technical Stack</span>
+      <h1>Core Skills &amp; Capabilities</h1>
+      <p class="page-subtitle">Production-tested technologies, architectural standards, and engineering tools I leverage to engineer resilient web products.</p>
+    </section>
+
+    <!-- Quick Tech Badges Grid -->
+    <section style="margin-bottom: 50px;">
+      <div class="skill-category-group">
+        <div class="skill-grid">
+          <div class="skill-chip">
+            <div class="skill-chip-icon">🌐</div>
+            <span>HTML5 (Semantic &amp; Accessible)</span>
+          </div>
+          <div class="skill-chip">
+            <div class="skill-chip-icon">🎨</div>
+            <span>CSS3 / Flexbox &amp; Grid</span>
+          </div>
+          <div class="skill-chip">
+            <div class="skill-chip-icon">⚡</div>
+            <span>JavaScript (Modern ES6+)</span>
+          </div>
+          <div class="skill-chip">
+            <div class="skill-chip-icon">🟢</div>
+            <span>Node.js Runtime</span>
+          </div>
+          <div class="skill-chip">
+            <div class="skill-chip-icon">🚂</div>
+            <span>Express.js Framework</span>
+          </div>
+          <div class="skill-chip">
+            <div class="skill-chip-icon">⚡</div>
+            <span>Supabase Cloud (PostgreSQL)</span>
+          </div>
+          <div class="skill-chip">
+            <div class="skill-chip-icon">🍃</div>
+            <span>MongoDB &amp; NoSQL</span>
+          </div>
+          <div class="skill-chip">
+            <div class="skill-chip-icon">🐙</div>
+            <span>Git &amp; GitHub</span>
+          </div>
+          <div class="skill-chip">
+            <div class="skill-chip-icon">🐳</div>
+            <span>Docker</span>
+          </div>
+          <div class="skill-chip">
+            <div class="skill-chip-icon">📱</div>
+            <span>Mobile-First Responsive UI</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Detailed Skill Categories Grid -->
+    <section class="skills-categories-grid">
+      <!-- 1. Frontend Engineering -->
+      <article class="skill-category-card">
+        <div class="skill-category-top">
+          <div class="skill-cat-title-group">
+            <span class="skill-cat-icon">🎨</span>
+            <div>
+              <h3>Frontend Engineering</h3>
+              <span style="font-size: 0.82rem; color: var(--accent-cyan);">UI/UX, Performance, Responsiveness</span>
+            </div>
+          </div>
+          <span class="tech-badge" style="background: rgba(124, 92, 255, 0.15);">5 Core Technologies</span>
+        </div>
+
+        <div class="skill-item-row">
+          <div class="skill-item-header">
+            <span class="skill-name">Semantic HTML5 &amp; Accessibility</span>
+            <span class="skill-level-badge level-advanced">Advanced</span>
+          </div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 95%;"></div></div>
+          <p class="skill-desc">SEO-optimized markup, strict ARIA compliance, accessible modals, drawers, and form controls.</p>
+        </div>
+
+        <div class="skill-item-row">
+          <div class="skill-item-header">
+            <span class="skill-name">CSS3, Flexbox, Grid &amp; Animations</span>
+            <span class="skill-level-badge level-advanced">Advanced</span>
+          </div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 95%;"></div></div>
+          <p class="skill-desc">Custom properties, glassmorphism, responsive breakpoints, fluid typography, 60fps micro-animations.</p>
+        </div>
+
+        <div class="skill-item-row">
+          <div class="skill-item-header">
+            <span class="skill-name">Modern JavaScript (ES6+ / Vanilla)</span>
+            <span class="skill-level-badge level-advanced">Advanced</span>
+          </div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 92%;"></div></div>
+          <p class="skill-desc">Asynchronous programming, Fetch/REST consumers, dynamic DOM manipulation, zero-dependency engines.</p>
+        </div>
+
+        <div class="skill-item-row">
+          <div class="skill-item-header">
+            <span class="skill-name">Mobile-First Responsive Layouts</span>
+            <span class="skill-level-badge level-advanced">Advanced</span>
+          </div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 96%;"></div></div>
+          <p class="skill-desc">Touch-friendly navigation drawers, responsive tables/forms, and adaptive media across all device sizes.</p>
+        </div>
+
+        <div class="skill-item-row">
+          <div class="skill-item-header">
+            <span class="skill-name">Web Audio API &amp; Media Handling</span>
+            <span class="skill-level-badge level-proficient">Proficient</span>
+          </div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 85%;"></div></div>
+          <p class="skill-desc">Custom audio player engines, dynamic track scrubbers, volume controls, and playback states.</p>
+        </div>
+      </article>
+
+      <!-- 2. Backend Architecture -->
+      <article class="skill-category-card">
+        <div class="skill-category-top">
+          <div class="skill-cat-title-group">
+            <span class="skill-cat-icon">🟢</span>
+            <div>
+              <h3>Backend Architecture</h3>
+              <span style="font-size: 0.82rem; color: var(--accent-cyan);">APIs, Routing, Security</span>
+            </div>
+          </div>
+          <span class="tech-badge" style="background: rgba(16, 185, 129, 0.15);">Production Ready</span>
+        </div>
+
+        <div class="skill-item-row">
+          <div class="skill-item-header">
+            <span class="skill-name">Node.js Runtime</span>
+            <span class="skill-level-badge level-advanced">Advanced</span>
+          </div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 90%;"></div></div>
+          <p class="skill-desc">Event-driven server architecture, file streams, child processes, asynchronous task management.</p>
+        </div>
+
+        <div class="skill-item-row">
+          <div class="skill-item-header">
+            <span class="skill-name">Express.js Framework</span>
+            <span class="skill-level-badge level-advanced">Advanced</span>
+          </div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 92%;"></div></div>
+          <p class="skill-desc">REST API routing, custom middleware pipelines, error handlers, static asset delivery, rate limiting.</p>
+        </div>
+
+        <div class="skill-item-row">
+          <div class="skill-item-header">
+            <span class="skill-name">RESTful API Design</span>
+            <span class="skill-level-badge level-advanced">Advanced</span>
+          </div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 94%;"></div></div>
+          <p class="skill-desc">Standard HTTP status codes, JSON payload validation, pagination, filtering, query param optimization.</p>
+        </div>
+
+        <div class="skill-item-row">
+          <div class="skill-item-header">
+            <span class="skill-name">Authentication &amp; Security</span>
+            <span class="skill-level-badge level-proficient">Proficient</span>
+          </div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 86%;"></div></div>
+          <p class="skill-desc">Session tokens, timing-safe crypto comparison, input sanitization against XSS/injection, CORS policies.</p>
+        </div>
+      </article>
+
+      <!-- 3. Databases & Cloud -->
+      <article class="skill-category-card">
+        <div class="skill-category-top">
+          <div class="skill-cat-title-group">
+            <span class="skill-cat-icon">⚡</span>
+            <div>
+              <h3>Databases &amp; Cloud</h3>
+              <span style="font-size: 0.82rem; color: var(--accent-cyan);">Persistence, Storage, Real-Time</span>
+            </div>
+          </div>
+          <span class="tech-badge" style="background: rgba(6, 182, 212, 0.15);">Cloud Native</span>
+        </div>
+
+        <div class="skill-item-row">
+          <div class="skill-item-header">
+            <span class="skill-name">Supabase &amp; PostgreSQL</span>
+            <span class="skill-level-badge level-advanced">Advanced</span>
+          </div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 90%;"></div></div>
+          <p class="skill-desc">Row Level Security (RLS), real-time listeners, foreign key relations, auto-updating triggers, auth integration.</p>
+        </div>
+
+        <div class="skill-item-row">
+          <div class="skill-item-header">
+            <span class="skill-name">MongoDB &amp; Document Stores</span>
+            <span class="skill-level-badge level-proficient">Proficient</span>
+          </div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 85%;"></div></div>
+          <p class="skill-desc">JSON schema modeling, collection indexing, aggregation pipelines, flexible document storage.</p>
+        </div>
+
+        <div class="skill-item-row">
+          <div class="skill-item-header">
+            <span class="skill-name">Data Modeling &amp; Migrations</span>
+            <span class="skill-level-badge level-proficient">Proficient</span>
+          </div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 85%;"></div></div>
+          <p class="skill-desc">Structured schema design for customer inquiries, orders, reviews, and client project milestones.</p>
+        </div>
+      </article>
+
+      <!-- 4. DevOps & Production Tooling -->
+      <article class="skill-category-card">
+        <div class="skill-category-top">
+          <div class="skill-cat-title-group">
+            <span class="skill-cat-icon">🛠️</span>
+            <div>
+              <h3>Tooling &amp; Production Workflows</h3>
+              <span style="font-size: 0.82rem; color: var(--accent-cyan);">Version Control, Deployment, Testing</span>
+            </div>
+          </div>
+          <span class="tech-badge" style="background: rgba(236, 72, 153, 0.15);">Workflow Rigor</span>
+        </div>
+
+        <div class="skill-item-row">
+          <div class="skill-item-header">
+            <span class="skill-name">Git &amp; GitHub Version Control</span>
+            <span class="skill-level-badge level-advanced">Advanced</span>
+          </div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 92%;"></div></div>
+          <p class="skill-desc">Feature branching, pull requests, semantic commit conventions, tag releases, and remote collaboration.</p>
+        </div>
+
+        <div class="skill-item-row">
+          <div class="skill-item-header">
+            <span class="skill-name">Docker &amp; Containerization</span>
+            <span class="skill-level-badge level-proficient">Proficient</span>
+          </div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 80%;"></div></div>
+          <p class="skill-desc">Dockerfile authoring, multi-stage builds, containerized local development and cloud hosting parity.</p>
+        </div>
+
+        <div class="skill-item-row">
+          <div class="skill-item-header">
+            <span class="skill-name">Performance Optimization (CWV)</span>
+            <span class="skill-level-badge level-advanced">Advanced</span>
+          </div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 94%;"></div></div>
+          <p class="skill-desc">Lighthouse audit optimization, image minification, lazy loading, font preloading, critical CSS rendering.</p>
+        </div>
+
+        <div class="skill-item-row">
+          <div class="skill-item-header">
+            <span class="skill-name">Postman &amp; API Validation</span>
+            <span class="skill-level-badge level-advanced">Advanced</span>
+          </div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 90%;"></div></div>
+          <p class="skill-desc">Automated endpoint collection testing, payload simulation, authentication header inspection.</p>
+        </div>
+      </article>
+    </section>
+
+    <!-- Call to Action Banner -->
+    <section class="cta-final" style="margin-top: 60px;">
+      <h2>Want to Put These Technologies to Work for Your Business?</h2>
+      <p>Let's architect an ultra-fast web application or landing page that drives measurable results.</p>
+      <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+        <a href="projects.html" class="btn btn-primary btn-large">View Portfolio Projects →</a>
+        <a href="features.html" class="btn btn-secondary btn-large">Explore Services &amp; Packages</a>
+        <a href="contact.html" class="btn btn-secondary btn-large">Start a Conversation</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h4>Singh Web Creations</h4>
+        <p>Full-Stack Web Developer &amp; UI Specialist</p>
+        <div class="footer-contact-item">
+          <span>📞</span> Phone: <a href="tel:9988113050">9988113050</a>
+        </div>
+        <div class="footer-contact-item">
+          <span>✉️</span> Email: <a href="mailto:gursimransingh240608@gmail.com">gursimransingh240608@gmail.com</a>
+        </div>
+      </div>
+
+      <div>
+        <h4 style="color: #ffffff; margin-bottom: 12px; font-size: 1.05rem;">Quick Links</h4>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <a href="index.html" style="color: var(--text-muted); text-decoration: none;">Home</a>
+          <a href="about.html" style="color: var(--text-muted); text-decoration: none;">About Me</a>
+          <a href="skills.html" style="color: var(--text-muted); text-decoration: none;">Technical Skills</a>
+          <a href="projects.html" style="color: var(--text-muted); text-decoration: none;">Projects Showcase</a>
+          <a href="features.html" style="color: var(--text-muted); text-decoration: none;">Services</a>
+          <a href="pricing.html" style="color: var(--text-muted); text-decoration: none;">Pricing Plans</a>
+          <a href="reviews.html" style="color: var(--text-muted); text-decoration: none;">Client Reviews</a>
+          <a href="contact.html" style="color: var(--text-muted); text-decoration: none;">Get in Touch</a>
+          <a href="auth.html" style="color: var(--text-muted); text-decoration: none;">Log in / Sign up</a>
+        </div>
+      </div>
+
+      <div>
+        <h4 style="color: #ffffff; margin-bottom: 12px; font-size: 1.05rem;">Connect Directly</h4>
+        <div class="socials">
+          <a class="btn small" href="https://wa.me/9988113050?text=Hello%20Gursimran" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a class="btn small" href="https://instagram.com/gursimran_singh_pb10" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a class="btn small" href="https://www.linkedin.com/in/gursimran-singh-9b2a48394" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a class="btn small" href="https://github.com/gursimransingh24060" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2024–2026 Singh Web Creations. Crafted with precision &amp; modern code.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

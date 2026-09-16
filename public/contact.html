@@ -3,40 +3,247 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Contact — Gursimran Singh</title>
+  <meta name="description" content="Get in touch with Singh Web Creations to discuss your next web development project. WhatsApp, phone, or direct email support available.">
+  <title>Contact &amp; Inquiries — Singh Web Creations</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Supabase Cloud SDK & Configuration -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
 </head>
 <body>
+  <!-- Mobile Navigation Backdrop & Drawer -->
+  <div class="mobile-drawer-backdrop"></div>
+  <aside class="mobile-nav-drawer" aria-label="Mobile navigation">
+    <a href="index.html"><span>🏠</span> Home</a>
+    <a href="about.html"><span>👤</span> About</a>
+    <a href="skills.html"><span>⚡</span> Skills</a>
+    <a href="projects.html"><span>💼</span> Projects</a>
+    <a href="features.html"><span>⚙️</span> Services</a>
+    <a href="pricing.html"><span>₹</span> Pricing</a>
+    <a href="reviews.html"><span>⭐</span> Reviews</a>
+    <a href="contact.html" class="active"><span>✉️</span> Contact</a>
+    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 10px;">
+      <a class="btn btn-secondary" href="Gursimran Singh Resume.pdf" download="Gursimran Singh Resume.pdf" target="_blank" rel="noopener noreferrer">Download Resume</a>
+    </div>
+  </aside>
+
+  <!-- Sticky Header -->
   <header class="nav">
-    <a class="logo" href="index.html"><span class="logo-mark">GS</span><span class="logo-label">Portfolio</span></a>
-    <nav>
+    <div class="nav-brand">
+      <a class="logo" href="index.html">
+        <span class="logo-mark"><img src="images/logo.png" alt="SWC Logo"></span>
+        <span class="logo-label">Singh Web Creations</span>
+      </a>
+    </div>
+
+    <nav class="nav-links" aria-label="Primary navigation">
       <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="skills.html">Skills</a>
       <a href="projects.html">Projects</a>
-      <a href="features.html">Features</a>
-      <a href="contact.html">Contact</a>
-      <a href="login.html">Login</a>
+      <a href="features.html">Services</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="reviews.html">Reviews</a>
+      <a href="contact.html" class="active">Contact</a>
     </nav>
+
+    <div class="nav-actions">
+      <a class="btn btn-secondary nav-auth-link" href="auth.html">Log in / Sign up</a>
+      <a class="btn btn-secondary nav-cta" href="tel:9988113050">📞 Call Now</a>
+      <button class="hamburger-btn" aria-label="Toggle mobile menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </header>
 
   <main class="page contact-page">
-    <h1>Contact Me</h1>
-    <p>I'd love to hear about your project. Fill this form — submissions are stored on this computer.</p>
-    <form id="contactForm">
-      <label>Name<input name="name" required></label>
-      <label>Phone<input name="phone" required></label>
-      <label>Email<input name="email" type="email"></label>
-      <label>Message<textarea name="message" required></textarea></label>
-      <div class="form-actions">
-        <button type="submit" class="btn">Send</button>
-        <a class="btn ghost" href="https://wa.me/9988113050?text=Hello%20Gursimran">Chat on WhatsApp</a>
+    <section class="page-header">
+      <span class="section-tag">Let's Connect</span>
+      <h1>Start Your Web Project</h1>
+      <p class="page-subtitle">Have an exciting idea or need an existing platform revamped? Send a message or reach out directly.</p>
+    </section>
+
+    <div class="contact-container">
+      <!-- Direct Contact Method Cards with Copy Triggers -->
+      <div class="contact-methods">
+        <!-- WhatsApp -->
+        <div class="contact-method">
+          <span class="contact-icon">💬</span>
+          <h3>WhatsApp</h3>
+          <p>Instant chat and quickest replies for consultations</p>
+          <div class="contact-method-actions">
+            <a href="https://wa.me/9988113050?text=Hello%20Gursimran,%20I%20would%20like%20to%20discuss%20a%20project" class="btn btn-primary small" target="_blank" rel="noopener noreferrer">Message on WhatsApp</a>
+            <button class="btn-copy" data-copy="9988113050">📋 Copy Number</button>
+          </div>
+        </div>
+
+        <!-- Phone -->
+        <div class="contact-method">
+          <span class="contact-icon">📞</span>
+          <h3>Phone Call</h3>
+          <p>Available for direct project scope &amp; timeline calls</p>
+          <div class="contact-method-actions">
+            <a href="tel:9988113050" class="btn btn-secondary small">Call 9988113050</a>
+            <button class="btn-copy" data-copy="9988113050">📋 Copy Number</button>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="contact-method">
+          <span class="contact-icon">✉️</span>
+          <h3>Direct Email</h3>
+          <p>Send project specifications, wireframes, or requests</p>
+          <div class="contact-method-actions">
+            <a href="mailto:gursimransingh240608@gmail.com" class="btn btn-secondary small">Send Email</a>
+            <button class="btn-copy" data-copy="gursimransingh240608@gmail.com">📋 Copy Email Address</button>
+          </div>
+        </div>
       </div>
-      <div id="status" role="status"></div>
-    </form>
+
+      <!-- Contact Form Wrapper -->
+      <div class="contact-form-wrapper">
+        <h2 class="contact-form-title">Start Your Project</h2>
+        <div class="form-header-note">
+          <span>⚡</span>
+          <span>Typical response time: usually under 2–4 hours</span>
+        </div>
+
+        <form id="contactForm" class="contact-form" action="https://formspree.io/f/mwvzjnqy" method="POST" novalidate>
+          <input type="hidden" name="_subject" value="New Project Inquiry — Singh Web Creations">
+          <input type="hidden" id="selectedService" name="service" value="">
+          <input type="hidden" id="selectedBudget" name="budget" value="">
+
+          <!-- Service Tags Selector -->
+          <div class="form-group">
+            <label>What service are you looking for?</label>
+            <div class="inquiry-pills" id="servicePills" role="radiogroup" aria-label="Select service">
+              <button type="button" class="inquiry-pill" data-value="Full-Stack Web App">💻 Full-Stack App</button>
+              <button type="button" class="inquiry-pill" data-value="Business Website">🏢 Business Site</button>
+              <button type="button" class="inquiry-pill" data-value="E-Commerce & Store">🛒 E-Commerce</button>
+              <button type="button" class="inquiry-pill" data-value="UI/UX Redesign">🎨 UI/UX Redesign</button>
+              <button type="button" class="inquiry-pill" data-value="Speed & SEO Optimization">⚡ Speed &amp; SEO</button>
+            </div>
+          </div>
+
+          <!-- Budget Range Selector -->
+          <div class="form-group">
+            <label>Estimated Project Budget</label>
+            <div class="inquiry-pills" id="budgetPills" role="radiogroup" aria-label="Select budget range">
+              <button type="button" class="inquiry-pill" data-value="< ₹10,000">&lt; ₹10,000 ($150)</button>
+              <button type="button" class="inquiry-pill" data-value="₹10k–₹25k">₹10k–₹25k ($150–$350)</button>
+              <button type="button" class="inquiry-pill" data-value="₹25k–₹50k">₹25k–₹50k ($350–$700)</button>
+              <button type="button" class="inquiry-pill" data-value="₹50,000+">₹50k+ (Enterprise)</button>
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="name">Your Name <span class="required-mark" style="color: var(--accent-pink);">*</span></label>
+              <input id="name" type="text" name="name" required placeholder="e.g. Alex Sharma" autocomplete="name">
+              <span class="field-error-msg" id="contactNameError"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address <span class="required-mark" style="color: var(--accent-pink);">*</span></label>
+              <input id="email" type="email" name="_replyto" required placeholder="e.g. alex.sharma@gmail.com" autocomplete="email">
+              <span class="field-error-msg" id="contactEmailError"></span>
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="phone">Phone / WhatsApp <span class="required-mark" style="color: var(--accent-pink);">*</span></label>
+              <input id="phone" type="tel" name="phone" required placeholder="e.g. +91 9988113050" autocomplete="tel">
+              <span class="field-error-msg" id="contactPhoneError"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="urgency">Expected Timeline / Urgency</label>
+              <select id="urgency" name="timeline" class="contact-select">
+                <option value="Flexible (1 month+)">Flexible (1 month+)</option>
+                <option value="Standard (2–3 weeks)" selected>Standard (2–3 weeks)</option>
+                <option value="Urgent (< 1 week)">Urgent (&lt; 1 week rush)</option>
+                <option value="Just planning / Exploring">Just planning / Exploring</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="subject">Subject / Project Title <span class="required-mark" style="color: var(--accent-pink);">*</span></label>
+            <input id="subject" type="text" name="subject" required placeholder="e.g. Custom Web Application Development">
+            <span class="field-error-msg" id="contactSubjectError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Project Requirements &amp; Goals <span class="required-mark" style="color: var(--accent-pink);">*</span></label>
+            <textarea id="message" name="message" rows="5" required placeholder="Describe your web project, required features, reference websites, or target launch date..."></textarea>
+            <span class="field-error-msg" id="contactMessageError"></span>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary btn-large" style="width: 100%;" id="contactSubmitBtn">
+              <span class="btn-text">Submit Project Details →</span>
+              <span class="btn-loading" style="display: none;">⏳ Sending Project Details...</span>
+            </button>
+          </div>
+
+          <div id="status" class="form-status" role="status"></div>
+        </form>
+      </div>
+    </div>
   </main>
 
-  <footer class="site-footer small">
-    <div>Phone: <a href="tel:9988113050">9988113050</a></div>
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h4>Singh Web Creations</h4>
+        <p>Full-Stack Web Developer &amp; UI Specialist</p>
+        <div class="footer-contact-item">
+          <span>📞</span> Phone: <a href="tel:9988113050">9988113050</a>
+        </div>
+        <div class="footer-contact-item">
+          <span>✉️</span> Email: <a href="mailto:gursimransingh240608@gmail.com">gursimransingh240608@gmail.com</a>
+        </div>
+      </div>
+
+      <div>
+        <h4 style="color: #ffffff; margin-bottom: 12px; font-size: 1.05rem;">Quick Links</h4>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <a href="index.html" style="color: var(--text-muted); text-decoration: none;">Home</a>
+          <a href="about.html" style="color: var(--text-muted); text-decoration: none;">About Me</a>
+          <a href="skills.html" style="color: var(--text-muted); text-decoration: none;">Technical Skills</a>
+          <a href="projects.html" style="color: var(--text-muted); text-decoration: none;">Projects Showcase</a>
+          <a href="features.html" style="color: var(--text-muted); text-decoration: none;">Services</a>
+          <a href="pricing.html" style="color: var(--text-muted); text-decoration: none;">Pricing Plans</a>
+          <a href="reviews.html" style="color: var(--text-muted); text-decoration: none;">Client Reviews</a>
+          <a href="contact.html" style="color: var(--text-muted); text-decoration: none;">Get in Touch</a>
+          <a href="auth.html" style="color: var(--text-muted); text-decoration: none;">Log in / Sign up</a>
+        </div>
+      </div>
+
+      <div>
+        <h4 style="color: #ffffff; margin-bottom: 12px; font-size: 1.05rem;">Connect Directly</h4>
+        <div class="socials">
+          <a class="btn small" href="https://wa.me/9988113050?text=Hello%20Gursimran" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a class="btn small" href="https://instagram.com/gursimran_singh_pb10" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a class="btn small" href="https://www.linkedin.com/in/gursimran-singh-9b2a48394" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a class="btn small" href="https://github.com/gursimransingh24060" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024–2026 Singh Web Creations. All rights reserved.</p>
+    </div>
   </footer>
+
   <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
 </body>
 </html>

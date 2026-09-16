@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Transparent, value-driven website creation plans from Singh Web Creations. Calculate custom project scopes, explore deliverables, and get started.">
+  <title>Website Creation Pricing & Scope Calculator — Singh Web Creations</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="favicon.svg">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+</head>
+<body>
+  <aside class="mobile-drawer-backdrop"></aside>
+  <aside class="mobile-nav-drawer" aria-label="Mobile navigation">
+    <a href="index.html"><span>🏠</span> Home</a>
+    <a href="about.html"><span>👤</span> About</a>
+    <a href="skills.html"><span>⚡</span> Skills</a>
+    <a href="projects.html"><span>💼</span> Projects</a>
+    <a href="features.html"><span>⚙️</span> Services</a>
+    <a href="pricing.html" class="active"><span>₹</span> Pricing</a>
+    <a href="reviews.html"><span>⭐</span> Reviews</a>
+    <a href="contact.html"><span>✉️</span> Contact</a>
+    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 10px;">
+      <a class="btn btn-primary" href="contact.html">Let's Talk</a>
+      <a class="btn btn-secondary" href="Gursimran Singh Resume.pdf" download="Gursimran Singh Resume.pdf" target="_blank" rel="noopener noreferrer">Download Resume</a>
+    </div>
+  </aside>
+
+  <header class="nav">
+    <div class="nav-brand">
+      <a class="logo" href="index.html">
+        <span class="logo-mark"><img src="images/logo.png" alt="SWC Logo"></span>
+        <span class="logo-label">Singh Web Creations</span>
+      </a>
+    </div>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="skills.html">Skills</a>
+      <a href="projects.html">Projects</a>
+      <a href="features.html">Services</a>
+      <a href="pricing.html" class="active">Pricing</a>
+      <a href="reviews.html">Reviews</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="btn btn-secondary nav-auth-link" href="auth.html">Log in / Sign up</a>
+      <a class="btn btn-primary nav-cta" href="contact.html">Let's Talk</a>
+      <button class="hamburger-btn" aria-label="Toggle mobile menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="pricing-page">
+    <section class="pricing-hero">
+      <span class="section-tag">Transparent Investment</span>
+      <h1>A clear plan for the website you want to build.</h1>
+      <p>Choose a fixed starting package or use our interactive scope calculator below to configure your exact technical requirements.</p>
+
+      <!-- Interactive Currency Switcher -->
+      <div class="currency-switcher-wrap" aria-label="Select currency">
+        <span class="currency-label">Currency:</span>
+        <div class="currency-pills" role="radiogroup">
+          <button type="button" class="currency-btn active" data-currency="INR" aria-checked="true">₹ INR</button>
+          <button type="button" class="currency-btn" data-currency="USD" aria-checked="false">$ USD</button>
+          <button type="button" class="currency-btn" data-currency="EUR" aria-checked="false">€ EUR</button>
+          <button type="button" class="currency-btn" data-currency="GBP" aria-checked="false">£ GBP</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Standard Pricing Cards Grid -->
+    <section class="pricing-grid" aria-label="Standard pricing plans">
+      <article class="pricing-card" data-plan="Pro">
+        <div class="pricing-kicker">For Individuals & Creators</div>
+        <h2>Pro</h2>
+        <p class="pricing-summary">A polished website for personal branding, freelancers, portfolios, or initial business presence.</p>
+        <div class="pricing-price" data-base-inr="5000">
+          <span class="currency-symbol">₹</span><span class="price-val">5,000</span>
+        </div>
+        <p class="pricing-note">Starting price · one-time delivery</p>
+        <a class="btn btn-secondary pricing-button" href="contact.html?plan=Pro&budget=5000">Choose Pro Plan →</a>
+        <h3>Includes</h3>
+        <ul class="pricing-features">
+          <li>Up to 5 key responsive pages</li>
+          <li>Mobile-first & ultra-fast loading</li>
+          <li>Inquiry form with WhatsApp alert routing</li>
+          <li>SEO meta tags & performance setup</li>
+          <li>1 round of guided revisions</li>
+          <li>3-day rapid turnaround</li>
+        </ul>
+      </article>
+
+      <article class="pricing-card pricing-card-featured" data-plan="Business">
+        <div class="pricing-badge">Most Requested</div>
+        <div class="pricing-kicker">For Growing Companies</div>
+        <h2>Business</h2>
+        <p class="pricing-summary">A high-converting web platform engineered for brands that require custom workflows, lead capture, and maximum speed.</p>
+        <div class="pricing-price" data-base-inr="12000">
+          <span class="currency-symbol">₹</span><span class="price-val">12,000</span>
+        </div>
+        <p class="pricing-note">Starting price · one-time delivery</p>
+        <a class="btn btn-primary pricing-button" href="contact.html?plan=Business&budget=12000">Choose Business Plan →</a>
+        <h3>Includes</h3>
+        <ul class="pricing-features">
+          <li>Up to 10 custom pages or sections</li>
+          <li>Bespoke modern UI/UX with glassmorphism</li>
+          <li>Interactive components & lead capture forms</li>
+          <li>Full REST API or CMS integration</li>
+          <li>Core Web Vitals 95+ speed guarantee</li>
+          <li>2 rounds of thorough revisions</li>
+          <li>30 days post-launch warranty support</li>
+        </ul>
+      </article>
+
+      <article class="pricing-card" data-plan="Enterprise">
+        <div class="pricing-kicker">For Scalable SaaS & Platforms</div>
+        <h2>Enterprise</h2>
+        <p class="pricing-summary">Tailored web platforms for complex applications, authenticated client portals, and bespoke integrations.</p>
+        <div class="pricing-price pricing-price-custom">Custom Scope</div>
+        <p class="pricing-note">Quoted after technical requirements review</p>
+        <a class="btn btn-secondary pricing-button" href="contact.html?plan=Enterprise">Discuss Enterprise Scope →</a>
+        <h3>Includes</h3>
+        <ul class="pricing-features">
+          <li>Unlimited custom pages & components</li>
+          <li>Supabase / PostgreSQL user authentication</li>
+          <li>Stripe or payment gateway integration</li>
+          <li>Client portal & admin oversight dashboards</li>
+          <li>Complete architectural documentation & handover</li>
+          <li>Dedicated timeline & priority direct support</li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- Interactive Scope & Cost Calculator -->
+    <section class="calculator-section" id="scopeCalculator" aria-label="Interactive project scope calculator">
+      <div class="section-header">
+        <span class="section-tag">Interactive Estimator</span>
+        <h2>Custom Project Scope & Cost Estimator</h2>
+        <p class="section-subtitle">Customize deliverables to see an instant estimate for timeline and budget</p>
+      </div>
+
+      <div class="calculator-card">
+        <div class="calc-inputs">
+          <!-- Page Count Slider -->
+          <div class="calc-group">
+            <div class="calc-label-row">
+              <label for="pageCountRange">Number of Pages / Views</label>
+              <span class="calc-badge" id="pageCountDisplay">5 Pages</span>
+            </div>
+            <input type="range" id="pageCountRange" min="1" max="20" value="5" step="1" class="calc-slider" aria-valuemin="1" aria-valuemax="20" aria-valuenow="5">
+            <div class="slider-ticks">
+              <span>1 Page</span>
+              <span>5 Pages</span>
+              <span>10 Pages</span>
+              <span>15 Pages</span>
+              <span>20+ Pages</span>
+            </div>
+          </div>
+
+          <!-- Feature Add-ons Grid -->
+          <div class="calc-group">
+            <label class="calc-group-title">Select Optional Capabilities & Add-ons:</label>
+            <div class="addons-grid">
+              <label class="addon-chip" for="addonEcommerce">
+                <input type="checkbox" id="addonEcommerce" data-inr="6000" data-days="2">
+                <div class="addon-content">
+                  <span class="addon-title">🛒 E-Commerce & Payments</span>
+                  <span class="addon-desc">Product catalog, shopping cart, and Stripe/Razorpay integration (+₹6,000)</span>
+                </div>
+              </label>
+
+              <label class="addon-chip" for="addonCms">
+                <input type="checkbox" id="addonCms" data-inr="4000" data-days="2">
+                <div class="addon-content">
+                  <span class="addon-title">📝 Dynamic CMS / Blog</span>
+                  <span class="addon-desc">Easily create and manage articles, portfolio items, or changelogs (+₹4,000)</span>
+                </div>
+              </label>
+
+              <label class="addon-chip" for="addonAuth">
+                <input type="checkbox" id="addonAuth" data-inr="5000" data-days="2">
+                <div class="addon-content">
+                  <span class="addon-title">🔒 User Auth & Client Portal</span>
+                  <span class="addon-desc">Supabase client login, signup, user profiles, and private dashboards (+₹5,000)</span>
+                </div>
+              </label>
+
+              <label class="addon-chip" for="addonSpeed">
+                <input type="checkbox" id="addonSpeed" data-inr="2500" data-days="1">
+                <div class="addon-content">
+                  <span class="addon-title">⚡ Speed & SEO Booster</span>
+                  <span class="addon-desc">Core Web Vitals 95+ score, schema markup, and advanced meta optimization (+₹2,500)</span>
+                </div>
+              </label>
+
+              <label class="addon-chip" for="addonRush">
+                <input type="checkbox" id="addonRush" data-inr="4500" data-days="-2">
+                <div class="addon-content">
+                  <span class="addon-title">🚀 48-Hour Priority Rush Delivery</span>
+                  <span class="addon-desc">Accelerated sprint scheduling to meet urgent hard deadlines (+₹4,500)</span>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Estimate Result Sidebar -->
+        <div class="calc-result-panel">
+          <span class="section-tag" style="font-size: 0.72rem;">Live Estimate</span>
+          <div class="calc-total-wrap">
+            <span class="calc-total-label">Estimated Investment:</span>
+            <div class="calc-total-price">
+              <span id="calcCurrencySymbol">₹</span><span id="calcTotalPrice">5,000</span>
+            </div>
+            <p class="calc-total-note">Transparent one-time quote · 25% advance to commence</p>
+          </div>
+
+          <div class="calc-meta-grid">
+            <div class="calc-meta-item">
+              <span class="meta-icon">⏱️</span>
+              <div>
+                <strong>Estimated Delivery</strong>
+                <span id="calcTimelineText">3–4 Business Days</span>
+              </div>
+            </div>
+            <div class="calc-meta-item">
+              <span class="meta-icon">🛡️</span>
+              <div>
+                <strong>Warranty Included</strong>
+                <span>30 Days Post-Launch Fixes</span>
+              </div>
+            </div>
+            <div class="calc-meta-item">
+              <span class="meta-icon">📱</span>
+              <div>
+                <strong>Responsiveness</strong>
+                <span>100% Mobile & Desktop</span>
+              </div>
+            </div>
+          </div>
+
+          <a id="calcBookBtn" class="btn btn-primary btn-large" href="contact.html?plan=Custom&budget=5000" style="width: 100%; text-align: center;">
+            Book This Custom Scope →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Plan Comparison Table -->
+    <section class="comparison-section">
+      <div class="section-header">
+        <span class="section-tag">Feature Matrix</span>
+        <h2>Compare All Deliverables</h2>
+        <p class="section-subtitle">A side-by-side comparison of what is included in each website package</p>
+      </div>
+
+      <div class="table-responsive">
+        <table class="comparison-table" aria-label="Plan comparison table">
+          <thead>
+            <tr>
+              <th scope="col" style="width: 38%;">Feature / Capability</th>
+              <th scope="col">Pro</th>
+              <th scope="col" class="th-featured">Business</th>
+              <th scope="col">Enterprise</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Target Use Case</td>
+              <td>Freelancers / Portfolios</td>
+              <td class="td-featured">Companies / Small Businesses</td>
+              <td>SaaS / Custom Platforms</td>
+            </tr>
+            <tr>
+              <td>Maximum Pages</td>
+              <td>Up to 5 Pages</td>
+              <td class="td-featured">Up to 10 Pages</td>
+              <td>Unlimited Pages</td>
+            </tr>
+            <tr>
+              <td>Custom UI/UX Design System</td>
+              <td>Standard Modern UI</td>
+              <td class="td-featured">Bespoke Brand Styling</td>
+              <td>Complete Component Library</td>
+            </tr>
+            <tr>
+              <td>Mobile-First Responsiveness</td>
+              <td>✓ Full Support</td>
+              <td class="td-featured">✓ Full Support</td>
+              <td>✓ Full Support</td>
+            </tr>
+            <tr>
+              <td>WhatsApp Routing & Inquiries</td>
+              <td>✓ Included</td>
+              <td class="td-featured">✓ Included</td>
+              <td>✓ Advanced Multi-Agent</td>
+            </tr>
+            <tr>
+              <td>Database & User Auth</td>
+              <td>—</td>
+              <td class="td-featured">Optional Add-on</td>
+              <td>✓ Supabase / Custom DB</td>
+            </tr>
+            <tr>
+              <td>Revision Rounds</td>
+              <td>1 Guided Round</td>
+              <td class="td-featured">2 Guided Rounds</td>
+              <td>Iterative Agile Sprints</td>
+            </tr>
+            <tr>
+              <td>Delivery Timeline</td>
+              <td>3–5 Days</td>
+              <td class="td-featured">7–12 Days</td>
+              <td>Agreed Sprint Schedule</td>
+            </tr>
+            <tr>
+              <td>Post-Launch Technical Support</td>
+              <td>14 Days</td>
+              <td class="td-featured">30 Days</td>
+              <td>60 Days Priority</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Project Terms Section -->
+    <section class="pricing-terms">
+      <div>
+        <span class="section-tag">Before We Begin</span>
+        <h2>Project Engagement Terms</h2>
+        <p>Transparent guidelines designed to protect both the client and the developer, ensuring seamless project completion.</p>
+      </div>
+      <ol>
+        <li><strong>Complete brief first.</strong> Please provide all key requirements, content, references, and features before development begins. New requirements after completion may carry extra charges.</li>
+        <li><strong>No refunds after scope approval.</strong> Once the project scope is approved and development commences, payments are non-refundable as dedicated engineering hours are committed.</li>
+        <li><strong>Structured delivery window.</strong> Minimum turnaround is 3 days. Larger projects proceed according to their agreed milestone plan. High-quality engineering cannot be rushed arbitrarily.</li>
+        <li><strong>Fair payment milestones.</strong> A 25% advance is required to secure calendar scheduling and begin development. The remaining 75% is due upon project completion and final handover.</li>
+      </ol>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <section class="pricing-faq" aria-label="Frequently asked questions">
+      <div class="section-header">
+        <span class="section-tag">Got Questions?</span>
+        <h2>Frequently Asked Questions</h2>
+        <p class="section-subtitle">Common questions about website creation, payments, and ownership</p>
+      </div>
+
+      <div class="faq-accordion">
+        <div class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            <span>Do I own the website code once the project is finished?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes, 100%. Upon final payment, you receive complete ownership of all source code, assets, repository files, and deployment configurations. You are free to host it anywhere you like.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            <span>What if I need updates or changes after the site is delivered?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Every plan comes with inclusive post-launch support (14 to 60 days depending on the tier) covering bug fixes and minor adjustments. For ongoing feature development or regular updates, monthly retainer packages are available.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            <span>Can you help me set up my domain name and hosting?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Absolutely! I assist with connecting custom domains, setting up SSL certificates, and deploying onto high-performance platforms like Vercel, Netlify, or your preferred cloud provider.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            <span>What payment methods do you accept?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>For Indian clients, UPI, NEFT/IMPS, and Bank Transfers are accepted. For international clients, payments can be made smoothly via PayPal, Stripe invoice, or Wise with automated currency conversion.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom CTA Banner -->
+    <section class="pricing-cta">
+      <h2>Ready to describe your website?</h2>
+      <p>Submit your project details or schedule a direct consultation call to begin.</p>
+      <a class="btn btn-primary" href="contact.html">Start Your Project →</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h4>Singh Web Creations</h4>
+        <p>Full-Stack Web Developer &amp; UI Specialist</p>
+        <div class="footer-contact-item">
+          <span>📞</span> Phone: <a href="tel:9988113050">9988113050</a>
+        </div>
+        <div class="footer-contact-item">
+          <span>✉️</span> Email: <a href="mailto:gursimransingh240608@gmail.com">gursimransingh240608@gmail.com</a>
+        </div>
+      </div>
+
+      <div>
+        <h4 style="color: #ffffff; margin-bottom: 12px; font-size: 1.05rem;">Quick Links</h4>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <a href="index.html" style="color: var(--text-muted); text-decoration: none;">Home</a>
+          <a href="about.html" style="color: var(--text-muted); text-decoration: none;">About Me</a>
+          <a href="skills.html" style="color: var(--text-muted); text-decoration: none;">Technical Skills</a>
+          <a href="projects.html" style="color: var(--text-muted); text-decoration: none;">Projects Showcase</a>
+          <a href="features.html" style="color: var(--text-muted); text-decoration: none;">Services</a>
+          <a href="pricing.html" style="color: var(--text-muted); text-decoration: none;">Pricing Plans</a>
+          <a href="reviews.html" style="color: var(--text-muted); text-decoration: none;">Client Reviews</a>
+          <a href="contact.html" style="color: var(--text-muted); text-decoration: none;">Get in Touch</a>
+          <a href="auth.html" style="color: var(--text-muted); text-decoration: none;">Log in / Sign up</a>
+        </div>
+      </div>
+
+      <div>
+        <h4 style="color: #ffffff; margin-bottom: 12px; font-size: 1.05rem;">Connect Directly</h4>
+        <div class="socials">
+          <a class="btn small" href="https://wa.me/9988113050?text=Hello%20Gursimran" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a class="btn small" href="https://instagram.com/gursimran_singh_pb10" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a class="btn small" href="https://www.linkedin.com/in/gursimran-singh-9b2a48394" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a class="btn small" href="https://github.com/gursimransingh24060" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024–2026 Singh Web Creations. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

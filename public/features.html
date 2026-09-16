@@ -3,40 +3,313 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Features — Gursimran Singh</title>
+  <meta name="description" content="Explore professional web development services offered by Singh Web Creations, including custom full-stack applications, UI/UX design, and performance optimization.">
+  <title>Services &amp; Capabilities — Singh Web Creations</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
 </head>
 <body>
+  <!-- Mobile Navigation Backdrop & Drawer -->
+  <div class="mobile-drawer-backdrop"></div>
+  <aside class="mobile-nav-drawer" aria-label="Mobile navigation">
+    <a href="index.html"><span>🏠</span> Home</a>
+    <a href="about.html"><span>👤</span> About</a>
+    <a href="skills.html"><span>⚡</span> Skills</a>
+    <a href="projects.html"><span>💼</span> Projects</a>
+    <a href="features.html" class="active"><span>⚙️</span> Services</a>
+    <a href="pricing.html"><span>₹</span> Pricing</a>
+    <a href="reviews.html"><span>⭐</span> Reviews</a>
+    <a href="contact.html"><span>✉️</span> Contact</a>
+    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 10px;">
+      <a class="btn btn-primary" href="contact.html">Request a Quote</a>
+      <a class="btn btn-secondary" href="Gursimran Singh Resume.pdf" download="Gursimran Singh Resume.pdf" target="_blank" rel="noopener noreferrer">Download Resume</a>
+    </div>
+  </aside>
+
+  <!-- Sticky Header -->
   <header class="nav">
-    <a class="logo" href="index.html"><span class="logo-mark">GS</span><span class="logo-label">Portfolio</span></a>
-    <nav>
+    <div class="nav-brand">
+      <a class="logo" href="index.html">
+        <span class="logo-mark"><img src="images/logo.png" alt="SWC Logo"></span>
+        <span class="logo-label">Singh Web Creations</span>
+      </a>
+    </div>
+
+    <nav class="nav-links" aria-label="Primary navigation">
       <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="skills.html">Skills</a>
       <a href="projects.html">Projects</a>
-      <a href="features.html">Features</a>
+      <a href="features.html" class="active">Services</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="reviews.html">Reviews</a>
       <a href="contact.html">Contact</a>
-      <a href="login.html">Login</a>
     </nav>
+
+    <div class="nav-actions">
+      <a class="btn btn-secondary nav-auth-link" href="auth.html">Log in / Sign up</a>
+      <a class="btn btn-primary nav-cta" href="contact.html">Get Started</a>
+      <button class="hamburger-btn" aria-label="Toggle mobile menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </header>
 
   <main class="page">
-    <h1>Features & Services</h1>
-    <ul class="feature-list">
-      <li>Custom project design from concept to launch</li>
-      <li>Responsive layouts for web and mobile</li>
-      <li>WhatsApp and social integration for client outreach</li>
-      <li>Secure contact submission saved locally and in JSON storage</li>
-      <li>Dynamic admin dashboard with deletion control for stored leads</li>
-      <li>Modern animations, performance-first development, and reuse-ready components</li>
-    </ul>
-    <section class="feature-detail">
-      <h2>Why this portfolio works</h2>
-      <p>The site is designed to look professional and to help clients move quickly from discovery to contact. It includes polished page flow, instant admin access, and real data storage that you can extend later.</p>
+    <section class="page-header">
+      <span class="section-tag">Services &amp; Capabilities</span>
+      <h1>End-to-End Web Solutions</h1>
+      <p class="page-subtitle">From custom UI design to scalable backends and ongoing maintenance — tailored for your business growth</p>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="services-grid">
+      <!-- Service 1 -->
+      <div class="service">
+        <span class="service-icon">🎨</span>
+        <h3>Custom UI/UX &amp; Web Design</h3>
+        <p>Bespoke, high-converting digital interfaces crafted to reflect your brand identity with flawless typography and modern glassmorphism.</p>
+        <ul class="service-deliverables">
+          <li>Custom layout &amp; design system</li>
+          <li>Interactive clickable mockups</li>
+          <li>Conversion-focused design hierarchy</li>
+          <li>Dark / Light aesthetic perfection</li>
+        </ul>
+        <div style="margin-top: 20px;">
+          <a href="contact.html?subject=Inquiry:%20UI/UX%20%26%20Web%20Design" class="btn btn-secondary small" style="width: 100%;">Inquire About Design →</a>
+        </div>
+      </div>
+
+      <!-- Service 2 -->
+      <div class="service">
+        <span class="service-icon">⚙️</span>
+        <h3>Full-Stack Web Development</h3>
+        <p>Clean, modular, and maintainable applications built with JavaScript, Node.js, and Express for rapid execution and seamless scalability.</p>
+        <ul class="service-deliverables">
+          <li>Robust REST API integrations</li>
+          <li>Database schemas &amp; data management</li>
+          <li>Authentication &amp; appointment systems</li>
+          <li>Clean, well-documented code</li>
+        </ul>
+        <div style="margin-top: 20px;">
+          <a href="contact.html?subject=Inquiry:%20Full-Stack%20Web%20Development" class="btn btn-secondary small" style="width: 100%;">Inquire About Development →</a>
+        </div>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="service">
+        <span class="service-icon">📱</span>
+        <h3>Mobile-First Responsive Design</h3>
+        <p>Every element is engineered to look and perform brilliantly on smartphones, tablets, laptops, and ultra-wide desktop monitors.</p>
+        <ul class="service-deliverables">
+          <li>Fluid flexible grid layouts</li>
+          <li>Touch-optimized mobile navigation</li>
+          <li>Cross-browser iOS &amp; Android testing</li>
+          <li>Zero layout shifts or broken UI</li>
+        </ul>
+        <div style="margin-top: 20px;">
+          <a href="contact.html?subject=Inquiry:%20Mobile-First%20Responsive%20Design" class="btn btn-secondary small" style="width: 100%;">Inquire About Responsive UI →</a>
+        </div>
+      </div>
+
+      <!-- Service 4 -->
+      <div class="service">
+        <span class="service-icon">🔗</span>
+        <h3>Automations &amp; Integrations</h3>
+        <p>Connect your web app to the tools you use daily — WhatsApp direct chats, Formspree email alerts, payment processors, and webhooks.</p>
+        <ul class="service-deliverables">
+          <li>Direct WhatsApp inquiry routing</li>
+          <li>Reliable contact forms &amp; email notifications</li>
+          <li>Third-party API connections</li>
+          <li>Automated client confirmations</li>
+        </ul>
+        <div style="margin-top: 20px;">
+          <a href="contact.html?subject=Inquiry:%20Automations%20%26%20Integrations" class="btn btn-secondary small" style="width: 100%;">Inquire About Integrations →</a>
+        </div>
+      </div>
+
+      <!-- Service 5 -->
+      <div class="service">
+        <span class="service-icon">⚡</span>
+        <h3>Performance &amp; Speed Tuning</h3>
+        <p>Sub-second load times and smooth 60fps animations. Fast websites rank higher on Google and keep visitors engaged longer.</p>
+        <ul class="service-deliverables">
+          <li>Core Web Vitals optimization</li>
+          <li>Optimized images &amp; asset delivery</li>
+          <li>Lightweight zero-bloat vanilla scripts</li>
+          <li>Efficient CSS rendering &amp; minimal DOM</li>
+        </ul>
+        <div style="margin-top: 20px;">
+          <a href="contact.html?subject=Inquiry:%20Performance%20%26%20Speed%20Tuning" class="btn btn-secondary small" style="width: 100%;">Inquire About Optimization →</a>
+        </div>
+      </div>
+
+      <!-- Service 6 -->
+      <div class="service">
+        <span class="service-icon">🚀</span>
+        <h3>Deployment, Hosting &amp; Support</h3>
+        <p>Hassle-free launch from start to finish. I handle domain configuration, SSL certificates, hosting setup, and post-launch maintenance.</p>
+        <ul class="service-deliverables">
+          <li>Cloud hosting setup (Netlify, Vercel, VPS)</li>
+          <li>Custom domain &amp; HTTPS security</li>
+          <li>Post-launch monitoring &amp; updates</li>
+          <li>Continuous direct support</li>
+        </ul>
+        <div style="margin-top: 20px;">
+          <a href="contact.html?subject=Inquiry:%20Deployment,%20Hosting%20%26%20Support" class="btn btn-secondary small" style="width: 100%;">Inquire About Hosting →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose Me -->
+    <section class="why-section">
+      <h2>Why Partner With Singh Web Creations?</h2>
+      <ul class="feature-list">
+        <li>✓ 2.5+ years of verified client delivery experience</li>
+        <li>✓ Direct one-on-one communication without agency middle-men</li>
+        <li>✓ Punctual delivery with clear milestone updates</li>
+        <li>✓ Clean, maintainable code you fully own and can easily extend</li>
+        <li>✓ Dedicated mobile-first responsive optimization</li>
+        <li>✓ Integrated WhatsApp &amp; fast client conversion funnels</li>
+        <li>✓ Post-launch warranty and technical support included</li>
+        <li>✓ High performance and SEO-friendly foundations</li>
+      </ul>
+    </section>
+
+    <!-- Interactive FAQ Section -->
+    <section class="faq-section">
+      <div class="section-header">
+        <span class="section-tag">Common Questions</span>
+        <h2>Frequently Asked Questions</h2>
+        <p class="section-subtitle">Everything you need to know about working together</p>
+      </div>
+
+      <div class="faq-container">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>What technologies do you use for development?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              I specialize in HTML5, CSS3, modern JavaScript (ES6+), Node.js, Express, MongoDB, and Supabase for cloud persistence. Every project is built clean without bloated unnecessary libraries.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How long does a typical web development project take?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Most standard business websites and landing pages are completed within 5 to 10 days. More complex full-stack web applications or custom booking portals take between 2 to 4 weeks depending on scope.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How does the feedback and revision process work?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Transparency is guaranteed. You will review interactive mockups before development begins. During coding, live preview links are provided so you can test features on your own phone and computer, with revisions addressed swiftly.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Can you integrate WhatsApp and contact forms for my business?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Yes! Automated inquiry forms and direct one-click WhatsApp chat triggers are integrated into every project to ensure you never miss a client lead or appointment booking.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Will my website be fast and rank well on search engines?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Every website is engineered with performance-first principles: semantic HTML5 tags, optimized responsive images, clean CSS, and zero bloated frameworks, resulting in sub-second load times and strong technical SEO foundations.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-final">
+      <h2>Let's Discuss Your Project Needs</h2>
+      <p>Have specific features or a target deadline? Let's talk through your vision and create a plan of action.</p>
+      <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+        <a href="contact.html" class="btn btn-primary btn-large">Get Started Now →</a>
+        <a href="https://wa.me/9988113050?text=Hello%20Gursimran,%20I%20have%20a%20question%20about%20your%20services" class="btn btn-secondary btn-large" target="_blank" rel="noopener noreferrer">💬 Chat on WhatsApp</a>
+      </div>
     </section>
   </main>
 
-  <footer class="site-footer small">
-    <div>Ready to start? <a href="contact.html">Contact me</a></div>
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h4>Singh Web Creations</h4>
+        <p>Full-Stack Web Developer &amp; UI Specialist</p>
+        <div class="footer-contact-item">
+          <span>📞</span> Phone: <a href="tel:9988113050">9988113050</a>
+        </div>
+        <div class="footer-contact-item">
+          <span>✉️</span> Email: <a href="mailto:gursimransingh240608@gmail.com">gursimransingh240608@gmail.com</a>
+        </div>
+      </div>
+
+      <div>
+        <h4 style="color: #ffffff; margin-bottom: 12px; font-size: 1.05rem;">Quick Links</h4>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <a href="index.html" style="color: var(--text-muted); text-decoration: none;">Home</a>
+          <a href="about.html" style="color: var(--text-muted); text-decoration: none;">About Me</a>
+          <a href="skills.html" style="color: var(--text-muted); text-decoration: none;">Technical Skills</a>
+          <a href="projects.html" style="color: var(--text-muted); text-decoration: none;">Projects Showcase</a>
+          <a href="features.html" style="color: var(--text-muted); text-decoration: none;">Services</a>
+          <a href="pricing.html" style="color: var(--text-muted); text-decoration: none;">Pricing Plans</a>
+          <a href="reviews.html" style="color: var(--text-muted); text-decoration: none;">Client Reviews</a>
+          <a href="contact.html" style="color: var(--text-muted); text-decoration: none;">Get in Touch</a>
+          <a href="auth.html" style="color: var(--text-muted); text-decoration: none;">Log in / Sign up</a>
+        </div>
+      </div>
+
+      <div>
+        <h4 style="color: #ffffff; margin-bottom: 12px; font-size: 1.05rem;">Connect Directly</h4>
+        <div class="socials">
+          <a class="btn small" href="https://wa.me/9988113050?text=Hello%20Gursimran" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a class="btn small" href="https://instagram.com/gursimran_singh_pb10" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a class="btn small" href="https://www.linkedin.com/in/gursimran-singh-9b2a48394" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a class="btn small" href="https://github.com/gursimransingh24060" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024–2026 Singh Web Creations. All rights reserved.</p>
+    </div>
   </footer>
+
   <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
 </body>
 </html>

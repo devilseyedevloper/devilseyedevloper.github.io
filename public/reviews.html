@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Read reviews and testimonials for Singh Web Creations. Share your feedback about working with Gursimran Singh. Real-time reviews powered by Supabase.">
+  <title>Reviews &amp; Feedback — Singh Web Creations</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Supabase Client SDK & Configuration -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+</head>
+<body>
+  <!-- Mobile Navigation Backdrop & Drawer -->
+  <div class="mobile-drawer-backdrop"></div>
+  <aside class="mobile-nav-drawer" aria-label="Mobile navigation">
+    <a href="index.html"><span>🏠</span> Home</a>
+    <a href="about.html"><span>👤</span> About</a>
+    <a href="skills.html"><span>⚡</span> Skills</a>
+    <a href="projects.html"><span>💼</span> Projects</a>
+    <a href="features.html"><span>⚙️</span> Services</a>
+    <a href="pricing.html"><span>₹</span> Pricing</a>
+    <a href="reviews.html" class="active"><span>⭐</span> Reviews</a>
+    <a href="contact.html"><span>✉️</span> Contact</a>
+    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 10px;">
+      <a class="btn btn-primary" href="contact.html">Let's Talk</a>
+      <a class="btn btn-secondary" href="Gursimran Singh Resume.pdf" download="Gursimran Singh Resume.pdf" target="_blank" rel="noopener noreferrer">Download Resume</a>
+    </div>
+  </aside>
+
+  <!-- Sticky Header -->
+  <header class="nav">
+    <div class="nav-brand">
+      <a class="logo" href="index.html">
+        <span class="logo-mark"><img src="images/logo.png" alt="SWC Logo"></span>
+        <span class="logo-label">Singh Web Creations</span>
+      </a>
+    </div>
+
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="skills.html">Skills</a>
+      <a href="projects.html">Projects</a>
+      <a href="features.html">Services</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="reviews.html" class="active">Reviews</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a class="btn btn-secondary nav-auth-link" href="auth.html">Log in / Sign up</a>
+      <a class="btn btn-primary nav-cta" href="contact.html">Let's Talk</a>
+      <button class="hamburger-btn" aria-label="Toggle mobile menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="page">
+    <!-- Page Header -->
+    <section class="page-header">
+      <span class="section-tag">Client &amp; Community Feedback</span>
+      <h1>Visitor &amp; Client Reviews</h1>
+      <p class="page-subtitle">Honest feedback from collaborators, businesses, and peers. Post your experience or read what others have shared.</p>
+    </section>
+
+    <!-- Review Highlights / Stats Bar -->
+    <section class="reviews-hero-stats">
+      <div class="reviews-stat-card">
+        <div class="reviews-stat-val">5.0 ★</div>
+        <div class="reviews-stat-sub">Average Satisfaction Score</div>
+      </div>
+      <div class="reviews-stat-card">
+        <div class="reviews-stat-val">100%</div>
+        <div class="reviews-stat-sub">On-Time Project Delivery</div>
+      </div>
+      <div class="reviews-stat-card">
+        <div class="reviews-stat-val">Live</div>
+        <div class="reviews-stat-sub">Real-Time Supabase Sync</div>
+      </div>
+    </section>
+
+    <!-- Feedback Submission Section -->
+    <section class="review-feedback-section" id="feedback-form-section" style="padding: 0; background: none; border: none;">
+      <div class="review-form-container" style="margin-bottom: 48px;">
+        <div class="review-form-card">
+          <div class="review-form-header">
+            <h3>Leave a Feedback</h3>
+            <p>Your honest feedback helps me continually improve and showcases real experiences with my work.</p>
+          </div>
+
+          <form id="portfolioReviewForm" class="review-form" novalidate>
+            <!-- Name Input Field -->
+            <div class="review-form-group">
+              <label for="reviewName">Your Name <span class="required-mark">*</span></label>
+              <input 
+                type="text" 
+                id="reviewName" 
+                name="name" 
+                placeholder="Enter your name" 
+                required 
+                maxlength="60"
+                autocomplete="name"
+              >
+              <span class="field-error-msg" id="nameError" aria-live="polite"></span>
+            </div>
+
+            <!-- 0 to 5 Star Rating System -->
+            <div class="review-form-group">
+              <label>Rating (0 to 5 Stars)</label>
+              <div class="star-rating-widget">
+                <div class="star-rating-stars" id="starRatingGroup" role="radiogroup" aria-label="Rate from 0 to 5 stars">
+                  <button type="button" class="star-btn" data-rating="1" aria-label="1 star" title="1 star">★</button>
+                  <button type="button" class="star-btn" data-rating="2" aria-label="2 stars" title="2 stars">★</button>
+                  <button type="button" class="star-btn" data-rating="3" aria-label="3 stars" title="3 stars">★</button>
+                  <button type="button" class="star-btn" data-rating="4" aria-label="4 stars" title="4 stars">★</button>
+                  <button type="button" class="star-btn" data-rating="5" aria-label="5 stars" title="5 stars">★</button>
+                </div>
+                <div class="star-rating-details">
+                  <span class="star-rating-label" id="starRatingText">0 / 5 stars (No rating selected)</span>
+                  <button type="button" class="star-clear-btn" id="starClearBtn" title="Reset to 0 stars" style="display: none;">Clear</button>
+                </div>
+              </div>
+              <input type="hidden" id="selectedRating" name="rating" value="0">
+            </div>
+
+            <!-- Review Textarea Field -->
+            <div class="review-form-group">
+              <label for="reviewMessage">What do you think about my work? <span class="required-mark">*</span></label>
+              <textarea 
+                id="reviewMessage" 
+                name="review" 
+                rows="4" 
+                placeholder="Write your feedback about my work..." 
+                required
+                maxlength="1500"
+              ></textarea>
+              <span class="field-error-msg" id="messageError" aria-live="polite"></span>
+            </div>
+
+            <!-- Clean Success Notification Alert -->
+            <div id="reviewSuccessAlert" class="review-alert review-alert-success" style="display: none;" role="status" aria-live="polite">
+              <div class="alert-icon-wrap">✓</div>
+              <div class="alert-text-wrap">
+                <strong>Thank you! Your review has been posted.</strong>
+                <p>Your feedback is now visible publicly in the reviews list below.</p>
+              </div>
+              <button type="button" class="alert-close-btn" id="closeReviewAlertBtn" aria-label="Close notification">×</button>
+            </div>
+
+            <!-- Clean Error Notification Alert -->
+            <div id="reviewErrorAlert" class="review-alert review-alert-error" style="display: none;" role="alert" aria-live="polite">
+              <div class="alert-icon-wrap error-icon-wrap">✕</div>
+              <div class="alert-text-wrap">
+                <strong id="errorAlertTitle">Unable to Post Review</strong>
+                <p id="reviewErrorMessage">Please check your network connection and try again.</p>
+              </div>
+              <button type="button" class="alert-close-btn" id="closeReviewErrorBtn" aria-label="Close error notification">×</button>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="review-form-actions">
+              <button type="submit" class="btn btn-primary btn-post-review" id="postReviewBtn">
+                <span class="btn-text">Post Review</span>
+                <span class="btn-loading" style="display: none;">⏳ Saving to Supabase...</span>
+                <span class="btn-arrow">→</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Submitted Reviews Display -->
+      <div class="posted-reviews-wrapper">
+        <div class="posted-reviews-header">
+          <div>
+            <h3>Community &amp; Client Feedback</h3>
+            <p class="posted-reviews-sub">Live public reviews verified from Supabase database</p>
+          </div>
+          <div class="reviews-count-badge" id="reviewsCountBadge">
+            <span id="reviewsCountNumber">0</span> Reviews
+          </div>
+        </div>
+
+        <div id="userReviewsList" class="user-reviews-list" aria-live="polite">
+          <!-- Dynamic review cards populated here by main.js -->
+        </div>
+
+        <div id="noReviewsPlaceholder" class="no-reviews-placeholder" style="display: none;">
+          <div class="empty-icon">💬</div>
+          <h4>No reviews posted yet</h4>
+          <p>Be the first to share your thoughts and feedback using the form above!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA Banner -->
+    <section class="cta-final" style="margin-top: 60px;">
+      <h2>Ready to Experience Seamless Web Development?</h2>
+      <p>Let's collaborate on your next project and build something worth talking about.</p>
+      <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+        <a href="contact.html" class="btn btn-primary btn-large">Start Your Project →</a>
+        <a href="https://wa.me/9988113050?text=Hello%20Gursimran,%20I%20am%20interested%20in%20building%20a%20website" class="btn btn-secondary btn-large" target="_blank" rel="noopener noreferrer">💬 Chat on WhatsApp</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h4>Singh Web Creations</h4>
+        <p>Full-Stack Web Developer &amp; UI Specialist</p>
+        <div class="footer-contact-item">
+          <span>📞</span> Phone: <a href="tel:9988113050">9988113050</a>
+        </div>
+        <div class="footer-contact-item">
+          <span>✉️</span> Email: <a href="mailto:gursimransingh240608@gmail.com">gursimransingh240608@gmail.com</a>
+        </div>
+      </div>
+
+      <div>
+        <h4 style="color: #ffffff; margin-bottom: 12px; font-size: 1.05rem;">Quick Links</h4>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <a href="index.html" style="color: var(--text-muted); text-decoration: none;">Home</a>
+          <a href="about.html" style="color: var(--text-muted); text-decoration: none;">About Me</a>
+          <a href="skills.html" style="color: var(--text-muted); text-decoration: none;">Technical Skills</a>
+          <a href="projects.html" style="color: var(--text-muted); text-decoration: none;">Projects Showcase</a>
+          <a href="features.html" style="color: var(--text-muted); text-decoration: none;">Services</a>
+          <a href="pricing.html" style="color: var(--text-muted); text-decoration: none;">Pricing Plans</a>
+          <a href="reviews.html" style="color: var(--text-muted); text-decoration: none;">Client Reviews</a>
+          <a href="contact.html" style="color: var(--text-muted); text-decoration: none;">Get in Touch</a>
+          <a href="auth.html" style="color: var(--text-muted); text-decoration: none;">Log in / Sign up</a>
+        </div>
+      </div>
+
+      <div>
+        <h4 style="color: #ffffff; margin-bottom: 12px; font-size: 1.05rem;">Connect Directly</h4>
+        <div class="socials">
+          <a class="btn small" href="https://wa.me/9988113050?text=Hello%20Gursimran" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a class="btn small" href="https://instagram.com/gursimran_singh_pb10" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a class="btn small" href="https://www.linkedin.com/in/gursimran-singh-9b2a48394" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a class="btn small" href="https://github.com/gursimransingh24060" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2024–2026 Singh Web Creations. Crafted with precision &amp; modern code.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>
