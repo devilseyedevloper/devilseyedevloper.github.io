@@ -1,4 +1,4 @@
-﻿-- ==============================================================================
+-- ==============================================================================
 -- Supabase Schema for Singh Web Creations Portfolio
 -- ==============================================================================
 -- Run this script in your Supabase SQL Editor (https://supabase.com/dashboard/project/_/sql)
@@ -107,3 +107,37 @@ CREATE POLICY "Allow public insert for messages"
 ON public.messages
 FOR INSERT
 WITH CHECK (true);
+
+-- ==============================================================================
+-- 'projects' table for admin-published portfolio projects
+-- ==============================================================================
+CREATE TABLE IF NOT EXISTS public.projects (
+    id TEXT PRIMARY KEY,
+    title TEXT NOT NULL,
+    category_label TEXT NOT NULL DEFAULT 'Featured Project',
+    filter_category TEXT NOT NULL DEFAULT 'webapp fullstack',
+    status TEXT NOT NULL DEFAULT '● Live Project',
+    description TEXT NOT NULL,
+    features JSONB NOT NULL DEFAULT '[]'::jsonb,
+    tech JSONB NOT NULL DEFAULT '[]'::jsonb,
+    images JSONB NOT NULL DEFAULT '[]'::jsonb,
+    link TEXT DEFAULT '',
+    created_at TIMESTAMPTZ DEFAULT TIMEZONE('utc'::text, NOW()) NOT NULL
+);
+
+ALTER TABLE public.projects ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Allow public read access for projects" ON public.projects;
+CREATE POLICY "Allow public read access for projects"
+ON public.projects
+FOR SELECT
+USING (true);
+
+DROP POLICY IF EXISTS "Allow service role full access for projects" ON public.projects;
+CREATE POLICY "Allow service role full access for projects"
+ON public.projects
+FOR ALL
+USING (auth.role() = 'service_role' OR auth.role() = 'authenticated');
+
+CREATE INDEX IF NOT EXISTS idx_projects_created_at ON public.projects (created_at DESC);
+

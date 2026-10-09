@@ -39,8 +39,16 @@ async function initAccount() {
   }
 
   // Set user info
-  const profile = await client.from('profiles').select('username,email').eq('id', session.user.id).maybeSingle();
+  let profile = await client.from('profiles').select('username,email').eq('id', session.user.id).maybeSingle();
   const email = session.user.email;
+  // Auto-create profile if missing
+  if (!profile.data) {
+    const defaultUsername = email.split('@')[0];
+    const { error: profileError } = await client.from('profiles').upsert({ id: session.user.id, username: defaultUsername, email }, { onConflict: 'id' });
+    if (!profileError) {
+      profile = { data: { username: defaultUsername, email } };
+    }
+  }
   const username = profile.data?.username || email.split('@')[0];
 
   const emailEl = document.querySelector('#accountEmail');

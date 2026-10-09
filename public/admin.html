@@ -24,6 +24,27 @@
     .admin-panel-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
     .admin-panel-heading select { min-width: 140px; padding: 10px; border: 1px solid var(--card-border); border-radius: 8px; background: var(--card-bg); color: var(--text-main); }
     .admin-muted { color: var(--text-muted); }
+    .admin-form textarea { width: 100%; padding: 13px 14px; border: 1px solid var(--card-border); border-radius: 8px; background: rgba(255,255,255,.06); color: var(--text-main); resize: vertical; min-height: 80px; font-family: inherit; font-size: 0.95rem; }
+    .admin-form select { width: 100%; padding: 13px 14px; border: 1px solid var(--card-border); border-radius: 8px; background: #0f1938; color: var(--text-main); font-family: inherit; }
+    .admin-panel-full { grid-column: 1 / -1; }
+    .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 680px) { .form-grid-2 { grid-template-columns: 1fr; } }
+    .dropzone { border: 2px dashed rgba(124, 92, 255, 0.4); border-radius: 10px; padding: 24px 16px; text-align: center; background: rgba(124, 92, 255, 0.05); cursor: pointer; transition: all 0.2s; }
+    .dropzone:hover, .dropzone.dragover { border-color: var(--accent-light); background: rgba(124, 92, 255, 0.12); }
+    .dropzone input[type="file"] { display: none; }
+    .preview-grid { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; }
+    .preview-card { position: relative; width: 110px; height: 80px; border-radius: 8px; overflow: hidden; border: 1px solid var(--card-border); background: #000; }
+    .preview-card img { width: 100%; height: 100%; object-fit: cover; }
+    .preview-remove { position: absolute; top: 4px; right: 4px; width: 22px; height: 22px; border-radius: 50%; background: rgba(236, 72, 153, 0.9); color: #fff; border: none; font-size: 12px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .preview-remove:hover { background: #ec4899; }
+    .url-input-group { display: flex; gap: 8px; margin-top: 8px; }
+    .url-input-group input { flex: 1; }
+    .url-input-group button { flex: 0 0 auto; }
+    .project-card-admin { display: flex; flex-direction: column; gap: 12px; padding: 16px; background: rgba(255,255,255,.04); border-radius: 10px; border: 1px solid var(--card-border); }
+    .project-card-admin-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+    .project-card-admin-thumbs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; }
+    .project-card-admin-thumbs img { width: 72px; height: 48px; object-fit: cover; border-radius: 6px; border: 1px solid var(--card-border); }
+    .project-meta-pill { display: inline-block; font-size: 0.78rem; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: rgba(124, 92, 255, 0.18); color: var(--accent-light); margin-right: 6px; }
     @media (max-width: 760px) { .admin-grid { grid-template-columns: 1fr; } .admin-header { align-items: flex-start; flex-direction: column; } }
   </style>
 </head>
@@ -42,9 +63,93 @@
     </section>
 
     <section id="dashboard" hidden>
-      <div class="admin-header"><div><span class="section-tag">Private Area</span><h1>Website Control Center</h1><p class="admin-muted">Moderate reviews and messages, block visitors, and hide project screenshots.</p></div><button id="logoutButton" class="btn btn-secondary">Log out</button></div>
+      <div class="admin-header"><div><span class="section-tag">Private Area</span><h1>Website Control Center</h1><p class="admin-muted">Manage projects, moderate reviews, block visitors, and manage screenshots.</p></div><button id="logoutButton" class="btn btn-secondary">Log out</button></div>
       <p id="dashboardStatus" class="admin-status" role="status"></p>
       <div class="admin-grid">
+        <!-- New Project Creator (Full Width) -->
+        <section class="admin-panel admin-panel-full">
+          <div class="admin-panel-heading">
+            <div>
+              <h2>🚀 Add &amp; Publish Project</h2>
+              <p class="admin-muted">Upload screenshot images, write project details, and publish directly to the public <a href="projects.html" target="_blank" style="color: var(--accent-cyan); text-decoration: underline;">Projects Showcase page</a>.</p>
+            </div>
+          </div>
+
+          <form id="projectPostForm" class="admin-form" style="margin-top: 18px;">
+            <div class="form-grid-2">
+              <label>Project Title *
+                <input id="projTitle" name="title" placeholder="e.g. FitTrack Pro — AI Workout Platform" required>
+              </label>
+              <label>Category Label *
+                <input id="projCategoryLabel" name="categoryLabel" placeholder="e.g. Full-Stack Web Application" value="Full-Stack Web Application" required>
+              </label>
+            </div>
+
+            <div class="form-grid-2">
+              <label>Filter Category (on Showcase page)
+                <select id="projFilterCategory" name="filterCategory">
+                  <option value="webapp fullstack">Full-Stack (webapp fullstack)</option>
+                  <option value="webapp frontend">Frontend &amp; UI (webapp frontend)</option>
+                  <option value="webapp fullstack client">Client System (fullstack client)</option>
+                  <option value="webapp frontend audio">Audio &amp; Media (audio frontend)</option>
+                </select>
+              </label>
+              <label>Status Badge
+                <input id="projStatus" name="status" placeholder="e.g. ● Live Client System" value="● Live Client System">
+              </label>
+            </div>
+
+            <label>Project Description (Write about the project) *
+              <textarea id="projDescription" name="description" rows="4" placeholder="Describe the project overview, client goals, user problem solved, key technical decisions, and architecture..." required></textarea>
+            </label>
+
+            <label>Key Architecture &amp; Features (One feature per line)
+              <textarea id="projFeatures" name="features" rows="3" placeholder="✓ Real-time telemetry &amp; live GPS monitoring&#10;✓ Interactive client dashboard with analytics&#10;✓ Automated WhatsApp alert notifications"></textarea>
+            </label>
+
+            <div class="form-grid-2">
+              <label>Technologies / Tech Stack (Comma separated)
+                <input id="projTech" name="tech" placeholder="e.g. React, Node.js, Express, MongoDB, Tailwind CSS">
+              </label>
+              <label>Live Demo or GitHub Link (Optional)
+                <input id="projLink" name="link" type="url" placeholder="https://yourproject.com or https://github.com/...">
+              </label>
+            </div>
+
+            <div>
+              <label style="margin-bottom: 8px;">📸 Project Screenshots &amp; Images</label>
+              <div id="dropzone" class="dropzone">
+                <p style="margin: 0; font-size: 1.05rem;">📁 Click or drag &amp; drop screenshot images here</p>
+                <p class="admin-muted" style="margin: 4px 0 0; font-size: 0.85rem;">Supports PNG, JPG, WEBP, SVG, GIF (Multiple images supported)</p>
+                <input type="file" id="projImages" accept="image/*" multiple>
+              </div>
+
+              <div class="url-input-group">
+                <input type="url" id="projImageUrlInput" placeholder="Or paste an image URL (e.g. https://... or images/example.png)">
+                <button type="button" id="addImageUrlBtn" class="btn btn-secondary small">+ Add Image URL</button>
+              </div>
+
+              <div id="imagePreviewGrid" class="preview-grid" aria-live="polite"></div>
+            </div>
+
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: 10px;">
+              <button id="submitProjectBtn" class="btn btn-primary" type="submit" style="padding: 13px 28px; font-size: 1rem;">🚀 Publish Project to Showcase</button>
+              <span id="projectFormStatus" class="admin-status" role="status"></span>
+            </div>
+          </form>
+        </section>
+
+        <!-- Published Projects List -->
+        <section class="admin-panel admin-panel-full">
+          <div class="admin-panel-heading">
+            <div>
+              <h2>📂 Published Projects</h2>
+              <p class="admin-muted">Manage projects posted to your public showcase.</p>
+            </div>
+          </div>
+          <div id="projectsList" class="admin-list"></div>
+        </section>
+
         <section class="admin-panel"><h2>Registered Users</h2><p class="admin-muted">View accounts, block access, or permanently delete users.</p><div id="usersList" class="admin-list"></div></section>
         <section class="admin-panel admin-orders-panel"><div class="admin-panel-heading"><div><h2>Website Orders</h2><p class="admin-muted">Review requests and update their progress.</p></div><select id="orderStatusFilter" aria-label="Filter orders"><option value="all">All orders</option><option value="pending">Pending</option><option value="cleared">Cleared</option><option value="completed">Completed</option></select></div><div id="ordersList" class="admin-list"></div></section>
         <section class="admin-panel"><h2>Feedback</h2><div id="reviewsList" class="admin-list"></div></section>

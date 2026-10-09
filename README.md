@@ -24,7 +24,12 @@ The private admin page is available at `/admin.html`. Configure these server env
 - `SUPABASE_URL`
 - `SUPABASE_SERVICE_ROLE_KEY`
 
-The service-role key must remain server-side and must never be placed in `public/`. The admin can remove Supabase reviews and contact messages, maintain blocked visitor records, and hide project screenshots from the public site. The current project has no client account system, so there are no user accounts to remove yet; blocked visitors are stored as moderation records instead.
+The service-role key must remain server-side and must never be placed in `public/`. The admin can:
+- **Publish New Projects**: Upload project screenshot images (PNG, JPG, WEBP, SVG), write comprehensive project descriptions, specify key architecture & features, add tech stack badges, and publish directly to `/projects.html`.
+- **Manage Published Projects**: View and permanently delete custom published projects.
+- **Moderate Reviews & Messages**: Delete reviews and contact inquiries stored in Supabase.
+- **Moderate Users & Visitors**: Block abusive visitor IPs or identifiers, and moderate registered accounts.
+- **Hide Default Screenshots**: Hide default case study screenshots if needed.
 
 The public `auth.html` page uses Supabase Auth email/password accounts. Enable Email provider authentication in Supabase before using signup. Users can browse as guests. A checked "Remember me" session is invalidated after three days without activity; an unchecked session lasts for the current browser session. Passwords are never stored by this website.
 

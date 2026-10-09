@@ -69,7 +69,7 @@
     <section class="page-header">
       <span class="section-tag">Portfolio Showcase</span>
       <h1>Featured Projects &amp; Case Studies</h1>
-      <p class="page-subtitle">Client work and concept demos built to show what your next digital experience could become</p>
+      <p class="page-subtitle">Selected client work built to show what your next digital experience could become</p>
     </section>
 
     <!-- Interactive Filter & Live Search Toolbar -->
@@ -88,6 +88,9 @@
         <span class="project-count-badge" id="projectCountBadge">Showing All Projects</span>
       </div>
     </div>
+
+    <!-- Admin Dynamic Projects Container -->
+    <div id="dynamicProjectsList"></div>
 
     <!-- Project 1: Ishawar Autos -->
     <section class="project-detail" id="ishawar-autos" data-category="webapp fullstack client">
@@ -182,127 +185,6 @@
         <span class="tech-badge">Node.js</span>
       </div>
 
-    </section>
-
-    <!-- Concept Demo Collection -->
-    <section class="project-detail" id="saas-dashboard" data-category="webapp fullstack">
-      <div class="project-detail-header"><div><span class="project-category">Concept Demo</span><h2>Nexa SaaS Dashboard</h2></div><span style="color: var(--accent-cyan); font-weight: 600; font-size: 0.9rem;">● Product Analytics</span></div>
-      <p>A focused analytics workspace for subscription teams that need revenue, user growth, and conversion signals in one calm view.</p>
-      <h3>Key Features:</h3><ul class="feature-list" style="margin-bottom: 24px;"><li>✓ Role-based dashboard navigation</li><li>✓ KPI cards and growth trend visualization</li><li>✓ Responsive operations layout</li></ul>
-      <div class="frames"><div class="frame"><img src="images/demo-saas-dashboard.svg" alt="Nexa SaaS analytics dashboard demo"></div><div class="frame"><img src="images/demo-saas-dashboard-login.svg" alt="Nexa SaaS login page demo"></div><div class="frame"><img src="images/demo-saas-dashboard-about.svg" alt="Nexa SaaS About page demo"></div></div>
-      <div class="tech-list" aria-label="Nexa SaaS Dashboard technologies"><span class="tech-badge">React</span><span class="tech-badge">TypeScript</span><span class="tech-badge">Charts</span><span class="tech-badge">Supabase</span></div>
-    </section>
-
-    <section class="project-detail" id="restaurant-booking" data-category="webapp frontend">
-      <div class="project-detail-header"><div><span class="project-category">Concept Demo</span><h2>Basil &amp; Brick Restaurant Booking</h2></div><span style="color: var(--accent-cyan); font-weight: 600; font-size: 0.9rem;">● Hospitality</span></div>
-      <p>A warm restaurant website concept that turns browsing seasonal dishes into a simple, high-intent table reservation journey.</p>
-      <h3>Key Features:</h3><ul class="feature-list" style="margin-bottom: 24px;"><li>✓ Menu-first storytelling layout</li><li>✓ Reservation call-to-action hierarchy</li><li>✓ Responsive editorial visual system</li></ul>
-      <div class="frames"><div class="frame"><img src="images/demo-restaurant-booking.svg" alt="Basil and Brick restaurant booking demo"></div><div class="frame"><img src="images/demo-restaurant-booking-login.svg" alt="Basil and Brick login page demo"></div><div class="frame"><img src="images/demo-restaurant-booking-about.svg" alt="Basil and Brick About page demo"></div></div>
-      <div class="tech-list" aria-label="Basil and Brick technologies"><span class="tech-badge">HTML5</span><span class="tech-badge">CSS3</span><span class="tech-badge">JavaScript</span><span class="tech-badge">Forms</span></div>
-    </section>
-
-    <section class="project-detail" id="fitness-coach" data-category="webapp frontend">
-      <div class="project-detail-header"><div><span class="project-category">Concept Demo</span><h2>Motion Method Fitness Coaching</h2></div><span style="color: var(--accent-cyan); font-weight: 600; font-size: 0.9rem;">● Wellness Platform</span></div>
-      <p>A bold coaching landing experience designed to make a training method feel approachable, measurable, and easy to start.</p>
-      <h3>Key Features:</h3><ul class="feature-list" style="margin-bottom: 24px;"><li>✓ Program discovery flow</li><li>✓ Strong mobile-first calls to action</li><li>✓ Clear coaching value proposition</li></ul>
-      <div class="frames"><div class="frame"><img src="images/demo-fitness-coach.svg" alt="Motion Method fitness coaching demo"></div><div class="frame"><img src="images/demo-fitness-coach-login.svg" alt="Motion Method login page demo"></div><div class="frame"><img src="images/demo-fitness-coach-about.svg" alt="Motion Method About page demo"></div></div>
-      <div class="tech-list" aria-label="Motion Method technologies"><span class="tech-badge">HTML5</span><span class="tech-badge">CSS3</span><span class="tech-badge">JavaScript</span><span class="tech-badge">Responsive UI</span></div>
-    </section>
-
-    <section class="project-detail" id="real-estate" data-category="webapp frontend">
-      <div class="project-detail-header"><div><span class="project-category">Concept Demo</span><h2>Northline Property Search</h2></div><span style="color: var(--accent-cyan); font-weight: 600; font-size: 0.9rem;">● Real Estate</span></div>
-      <p>A refined property discovery interface that puts location, lifestyle, and the next search action at the center of the experience.</p>
-      <h3>Key Features:</h3><ul class="feature-list" style="margin-bottom: 24px;"><li>✓ Search-led property discovery</li><li>✓ Neighborhood-focused content structure</li><li>✓ Agent contact conversion path</li></ul>
-      <div class="frames"><div class="frame"><img src="images/demo-real-estate.svg" alt="Northline property search demo"></div><div class="frame"><img src="images/demo-real-estate-login.svg" alt="Northline client login page demo"></div><div class="frame"><img src="images/demo-real-estate-about.svg" alt="Northline About page demo"></div></div>
-      <div class="tech-list" aria-label="Northline technologies"><span class="tech-badge">HTML5</span><span class="tech-badge">CSS3</span><span class="tech-badge">JavaScript</span><span class="tech-badge">Search UI</span></div>
-    </section>
-
-    <section class="project-detail" id="learning-platform" data-category="webapp fullstack">
-      <div class="project-detail-header"><div><span class="project-category">Concept Demo</span><h2>SkillSpring Learning Platform</h2></div><span style="color: var(--accent-cyan); font-weight: 600; font-size: 0.9rem;">● Education</span></div>
-      <p>A course discovery experience for practical learners, with clear pathways from browsing a topic to starting a lesson.</p>
-      <h3>Key Features:</h3><ul class="feature-list" style="margin-bottom: 24px;"><li>✓ Course category browsing</li><li>✓ Instructor-led learning cards</li><li>✓ Rating and lesson metadata</li></ul>
-      <div class="frames"><div class="frame"><img src="images/demo-learning-platform.svg" alt="SkillSpring learning platform demo"></div><div class="frame"><img src="images/demo-learning-platform-login.svg" alt="SkillSpring login page demo"></div><div class="frame"><img src="images/demo-learning-platform-about.svg" alt="SkillSpring About page demo"></div></div>
-      <div class="tech-list" aria-label="SkillSpring technologies"><span class="tech-badge">React</span><span class="tech-badge">Node.js</span><span class="tech-badge">MongoDB</span><span class="tech-badge">Auth</span></div>
-    </section>
-
-    <section class="project-detail" id="travel-planner" data-category="webapp frontend">
-      <div class="project-detail-header"><div><span class="project-category">Concept Demo</span><h2>Roamly Travel Planner</h2></div><span style="color: var(--accent-cyan); font-weight: 600; font-size: 0.9rem;">● Travel Experience</span></div>
-      <p>A bright travel planning concept for turning inspiration into saved destinations and simple, shareable itineraries.</p>
-      <h3>Key Features:</h3><ul class="feature-list" style="margin-bottom: 24px;"><li>✓ Destination-led visual browsing</li><li>✓ Curated trip collections</li><li>✓ Flexible responsive cards</li></ul>
-      <div class="frames"><div class="frame"><img src="images/demo-travel-planner.svg" alt="Roamly travel planner demo"></div><div class="frame"><img src="images/demo-travel-planner-login.svg" alt="Roamly login page demo"></div><div class="frame"><img src="images/demo-travel-planner-about.svg" alt="Roamly About page demo"></div></div>
-      <div class="tech-list" aria-label="Roamly technologies"><span class="tech-badge">HTML5</span><span class="tech-badge">CSS3</span><span class="tech-badge">JavaScript</span><span class="tech-badge">Maps UI</span></div>
-    </section>
-
-    <section class="project-detail" id="finance-wallet" data-category="webapp fullstack">
-      <div class="project-detail-header"><div><span class="project-category">Concept Demo</span><h2>Pennywise Finance Wallet</h2></div><span style="color: var(--accent-cyan); font-weight: 600; font-size: 0.9rem;">● Personal Finance</span></div>
-      <p>A clean personal finance dashboard concept that makes balances, spending patterns, and recent activity easy to scan.</p>
-      <h3>Key Features:</h3><ul class="feature-list" style="margin-bottom: 24px;"><li>✓ Balance and spending overview</li><li>✓ Accessible chart presentation</li><li>✓ Recent transaction activity</li></ul>
-      <div class="frames"><div class="frame"><img src="images/demo-finance-wallet.svg" alt="Pennywise personal finance dashboard demo"></div><div class="frame"><img src="images/demo-finance-wallet-login.svg" alt="Pennywise login page demo"></div><div class="frame"><img src="images/demo-finance-wallet-about.svg" alt="Pennywise About page demo"></div></div>
-      <div class="tech-list" aria-label="Pennywise technologies"><span class="tech-badge">React</span><span class="tech-badge">Node.js</span><span class="tech-badge">Charts</span><span class="tech-badge">PostgreSQL</span></div>
-    </section>
-
-    <section class="project-detail" id="event-tickets" data-category="webapp frontend">
-      <div class="project-detail-header"><div><span class="project-category">Concept Demo</span><h2>Pulse Live Event Tickets</h2></div><span style="color: var(--accent-cyan); font-weight: 600; font-size: 0.9rem;">● Event Discovery</span></div>
-      <p>An energetic event discovery interface for finding live shows, browsing artists, and moving quickly toward ticket selection.</p>
-      <h3>Key Features:</h3><ul class="feature-list" style="margin-bottom: 24px;"><li>✓ Event and artist discovery</li><li>✓ Featured event merchandising</li><li>✓ Venue-oriented content hierarchy</li></ul>
-      <div class="frames"><div class="frame"><img src="images/demo-event-tickets.svg" alt="Pulse Live event ticketing demo"></div><div class="frame"><img src="images/demo-event-tickets-login.svg" alt="Pulse Live login page demo"></div><div class="frame"><img src="images/demo-event-tickets-about.svg" alt="Pulse Live About page demo"></div></div>
-      <div class="tech-list" aria-label="Pulse Live technologies"><span class="tech-badge">HTML5</span><span class="tech-badge">CSS3</span><span class="tech-badge">JavaScript</span><span class="tech-badge">Ticketing</span></div>
-    </section>
-
-    <section class="project-detail" id="agency-portfolio" data-category="webapp frontend">
-      <div class="project-detail-header"><div><span class="project-category">Concept Demo</span><h2>FORM Creative Agency Portfolio</h2></div><span style="color: var(--accent-cyan); font-weight: 600; font-size: 0.9rem;">● Studio Portfolio</span></div>
-      <p>A confident portfolio direction for a creative studio that lets selected work, point of view, and contact intent lead the page.</p>
-      <h3>Key Features:</h3><ul class="feature-list" style="margin-bottom: 24px;"><li>✓ Work-led portfolio hierarchy</li><li>✓ Editorial typography system</li><li>✓ Flexible case study entry points</li></ul>
-      <div class="frames"><div class="frame"><img src="images/demo-agency-portfolio.svg" alt="FORM creative agency portfolio demo"></div><div class="frame"><img src="images/demo-agency-portfolio-login.svg" alt="FORM client login page demo"></div><div class="frame"><img src="images/demo-agency-portfolio-about.svg" alt="FORM About page demo"></div></div>
-      <div class="tech-list" aria-label="FORM Studio technologies"><span class="tech-badge">HTML5</span><span class="tech-badge">CSS3</span><span class="tech-badge">JavaScript</span><span class="tech-badge">CMS Ready</span></div>
-    </section>
-
-    <section class="project-detail" id="podcast-platform" data-category="webapp frontend audio">
-      <div class="project-detail-header"><div><span class="project-category">Concept Demo</span><h2>Earshot Podcast Platform</h2></div><span style="color: var(--accent-cyan); font-weight: 600; font-size: 0.9rem;">● Audio Content</span></div>
-      <p>A dark, focused listening experience that helps audiences discover thoughtful shows and return to what they were enjoying.</p>
-      <h3>Key Features:</h3><ul class="feature-list" style="margin-bottom: 24px;"><li>✓ Featured show discovery</li><li>✓ Persistent now-playing state</li><li>✓ Category-based content browsing</li></ul>
-      <div class="frames"><div class="frame"><img src="images/demo-podcast-platform.svg" alt="Earshot podcast platform demo"></div><div class="frame"><img src="images/demo-podcast-platform-login.svg" alt="Earshot login page demo"></div><div class="frame"><img src="images/demo-podcast-platform-about.svg" alt="Earshot About page demo"></div></div>
-      <div class="tech-list" aria-label="Earshot technologies"><span class="tech-badge">JavaScript</span><span class="tech-badge">Web Audio</span><span class="tech-badge">Node.js</span><span class="tech-badge">API Ready</span></div>
-    </section>
-
-    <section class="project-detail" id="marketplace" data-category="webapp fullstack">
-      <div class="project-detail-header"><div><span class="project-category">Concept Demo</span><h2>Morrow Handmade Marketplace</h2></div><span style="color: var(--accent-cyan); font-weight: 600; font-size: 0.9rem;">● Commerce</span></div>
-      <p>A considered marketplace concept for independent makers, combining product discovery with a slower, more human shopping rhythm.</p>
-      <h3>Key Features:</h3><ul class="feature-list" style="margin-bottom: 24px;"><li>✓ Search and product discovery</li><li>✓ Maker-friendly catalog structure</li><li>✓ Shopping bag entry point</li></ul>
-      <div class="frames"><div class="frame"><img src="images/demo-marketplace.svg" alt="Morrow handmade marketplace demo"></div><div class="frame"><img src="images/demo-marketplace-login.svg" alt="Morrow Market login page demo"></div><div class="frame"><img src="images/demo-marketplace-about.svg" alt="Morrow Market About page demo"></div></div>
-      <div class="tech-list" aria-label="Morrow Market technologies"><span class="tech-badge">React</span><span class="tech-badge">Node.js</span><span class="tech-badge">MongoDB</span><span class="tech-badge">Payments</span></div>
-    </section>
-
-    <section class="project-detail" id="health-clinic" data-category="webapp frontend">
-      <div class="project-detail-header"><div><span class="project-category">Concept Demo</span><h2>Luma Health Clinic</h2></div><span style="color: var(--accent-cyan); font-weight: 600; font-size: 0.9rem;">● Healthcare</span></div>
-      <p>A reassuring clinic website concept that organizes services, care teams, and appointment intent around patient confidence.</p>
-      <h3>Key Features:</h3><ul class="feature-list" style="margin-bottom: 24px;"><li>✓ Service and care-team discovery</li><li>✓ Calm accessible content design</li><li>✓ Prominent appointment booking path</li></ul>
-      <div class="frames"><div class="frame"><img src="images/demo-health-clinic.svg" alt="Luma Health clinic website demo"></div><div class="frame"><img src="images/demo-health-clinic-login.svg" alt="Luma Health patient login page demo"></div><div class="frame"><img src="images/demo-health-clinic-about.svg" alt="Luma Health About page demo"></div></div>
-      <div class="tech-list" aria-label="Luma Health technologies"><span class="tech-badge">HTML5</span><span class="tech-badge">CSS3</span><span class="tech-badge">JavaScript</span><span class="tech-badge">Accessibility</span></div>
-    </section>
-
-    <section class="project-detail" id="crypto-analytics" data-category="webapp fullstack">
-      <div class="project-detail-header"><div><span class="project-category">Concept Demo</span><h2>Orbit Crypto Analytics</h2></div><span style="color: var(--accent-cyan); font-weight: 600; font-size: 0.9rem;">● Data Visualization</span></div>
-      <p>A high-contrast market analytics dashboard concept for monitoring portfolio movement without overwhelming the user with noise.</p>
-      <h3>Key Features:</h3><ul class="feature-list" style="margin-bottom: 24px;"><li>✓ Portfolio value summary</li><li>✓ Time-range chart controls</li><li>✓ High-signal market layout</li></ul>
-      <div class="frames"><div class="frame"><img src="images/demo-crypto-analytics.svg" alt="Orbit crypto analytics dashboard demo"></div><div class="frame"><img src="images/demo-crypto-analytics-login.svg" alt="Orbit Analytics login page demo"></div><div class="frame"><img src="images/demo-crypto-analytics-about.svg" alt="Orbit Analytics About page demo"></div></div>
-      <div class="tech-list" aria-label="Orbit Analytics technologies"><span class="tech-badge">React</span><span class="tech-badge">TypeScript</span><span class="tech-badge">Charts</span><span class="tech-badge">API Ready</span></div>
-    </section>
-
-    <section class="project-detail" id="wedding-planner" data-category="webapp frontend">
-      <div class="project-detail-header"><div><span class="project-category">Concept Demo</span><h2>The Gathered Day Planner</h2></div><span style="color: var(--accent-cyan); font-weight: 600; font-size: 0.9rem;">● Event Planning</span></div>
-      <p>A gentle wedding planning experience that turns a complex list of decisions into a calm, guided sequence of next steps.</p>
-      <h3>Key Features:</h3><ul class="feature-list" style="margin-bottom: 24px;"><li>✓ Planning checklist structure</li><li>✓ Vendor discovery entry points</li><li>✓ Moodboard-inspired visual language</li></ul>
-      <div class="frames"><div class="frame"><img src="images/demo-wedding-planner.svg" alt="The Gathered Day wedding planner demo"></div><div class="frame"><img src="images/demo-wedding-planner-login.svg" alt="The Gathered Day login page demo"></div><div class="frame"><img src="images/demo-wedding-planner-about.svg" alt="The Gathered Day About page demo"></div></div>
-      <div class="tech-list" aria-label="The Gathered Day technologies"><span class="tech-badge">HTML5</span><span class="tech-badge">CSS3</span><span class="tech-badge">JavaScript</span><span class="tech-badge">Forms</span></div>
-    </section>
-
-    <section class="project-detail" id="nonprofit-impact" data-category="webapp frontend">
-      <div class="project-detail-header"><div><span class="project-category">Concept Demo</span><h2>Common Ground Impact Hub</h2></div><span style="color: var(--accent-cyan); font-weight: 600; font-size: 0.9rem;">● Nonprofit Storytelling</span></div>
-      <p>A transparent nonprofit homepage concept that turns community outcomes into understandable stories and clear ways to participate.</p>
-      <h3>Key Features:</h3><ul class="feature-list" style="margin-bottom: 24px;"><li>✓ Impact metrics made scannable</li><li>✓ Community program storytelling</li><li>✓ Volunteer and donation pathways</li></ul>
-      <div class="frames"><div class="frame"><img src="images/demo-nonprofit-impact.svg" alt="Common Ground nonprofit impact demo"></div><div class="frame"><img src="images/demo-nonprofit-impact-login.svg" alt="Common Ground volunteer login page demo"></div><div class="frame"><img src="images/demo-nonprofit-impact-about.svg" alt="Common Ground About page demo"></div></div>
-      <div class="tech-list" aria-label="Common Ground technologies"><span class="tech-badge">HTML5</span><span class="tech-badge">CSS3</span><span class="tech-badge">JavaScript</span><span class="tech-badge">CMS Ready</span></div>
     </section>
 
     <!-- Call to Action -->

@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCounters();
   initTiltCards();
   initHeroParallax();
+  initDynamicProjects();
   initProjectFilter();
   initLightbox();
   initSiteState();
@@ -34,6 +35,136 @@ async function initSiteState() {
         if (frame) frame.remove();
       });
     });
+  } catch (_) {}
+}
+
+async function initDynamicProjects() {
+  const container = document.getElementById('dynamicProjectsList');
+  if (!container) return;
+
+  try {
+    const response = await fetch('/api/projects');
+    if (!response.ok) return;
+    const projects = await response.json();
+    if (!Array.isArray(projects) || projects.length === 0) return;
+
+    container.replaceChildren();
+
+    projects.forEach(project => {
+      const section = document.createElement('section');
+      section.className = 'project-detail';
+      section.id = `project-${project.id}`;
+      section.setAttribute('data-category', (project.filterCategory || 'webapp fullstack').toLowerCase());
+
+      // Header
+      const headerDiv = document.createElement('div');
+      headerDiv.className = 'project-detail-header';
+
+      const titleGroup = document.createElement('div');
+      const catBadge = document.createElement('span');
+      catBadge.className = 'project-category';
+      catBadge.textContent = project.categoryLabel || 'Featured Project';
+
+      const titleH2 = document.createElement('h2');
+      titleH2.textContent = project.title;
+      titleGroup.append(catBadge, titleH2);
+
+      const statusBadge = document.createElement('span');
+      statusBadge.style.cssText = 'color: var(--accent-cyan); font-weight: 600; font-size: 0.9rem;';
+      statusBadge.textContent = project.status || '● Featured Project';
+
+      headerDiv.append(titleGroup, statusBadge);
+      section.appendChild(headerDiv);
+
+      // Description
+      if (project.description) {
+        const descP = document.createElement('p');
+        descP.textContent = project.description;
+        section.appendChild(descP);
+      }
+
+      // Features
+      if (Array.isArray(project.features) && project.features.length > 0) {
+        const featH3 = document.createElement('h3');
+        featH3.textContent = 'Key Architecture & Features:';
+        section.appendChild(featH3);
+
+        const featUl = document.createElement('ul');
+        featUl.className = 'feature-list';
+        featUl.style.marginBottom = '24px';
+
+        project.features.forEach(feature => {
+          const li = document.createElement('li');
+          li.textContent = `✓ ${feature}`;
+          featUl.appendChild(li);
+        });
+        section.appendChild(featUl);
+      }
+
+      // Screenshot Gallery
+      if (Array.isArray(project.images) && project.images.length > 0) {
+        const galleryH3 = document.createElement('h3');
+        galleryH3.style.cssText = 'font-size: 1rem; color: var(--text-muted); margin-bottom: 10px;';
+        galleryH3.textContent = '📸 Screenshot Gallery (Click to enlarge & navigate):';
+        section.appendChild(galleryH3);
+
+        const framesDiv = document.createElement('div');
+        framesDiv.className = 'frames';
+
+        project.images.forEach((imgSrc, imgIdx) => {
+          const frameDiv = document.createElement('div');
+          frameDiv.className = 'frame';
+
+          const img = document.createElement('img');
+          img.src = imgSrc;
+          img.alt = `${project.title} — Screenshot ${imgIdx + 1}`;
+          frameDiv.appendChild(img);
+
+          framesDiv.appendChild(frameDiv);
+        });
+
+        section.appendChild(framesDiv);
+      }
+
+      // Tech Badges
+      if (Array.isArray(project.tech) && project.tech.length > 0) {
+        const techDiv = document.createElement('div');
+        techDiv.className = 'tech-list';
+        techDiv.setAttribute('aria-label', `${project.title} technologies`);
+
+        project.tech.forEach(t => {
+          const badge = document.createElement('span');
+          badge.className = 'tech-badge';
+          badge.textContent = t;
+          techDiv.appendChild(badge);
+        });
+
+        section.appendChild(techDiv);
+      }
+
+      // Demo/Project Link
+      if (project.link) {
+        const linkDiv = document.createElement('div');
+        linkDiv.style.marginTop = '20px';
+
+        const linkA = document.createElement('a');
+        linkA.className = 'btn btn-secondary small';
+        linkA.href = project.link;
+        linkA.target = '_blank';
+        linkA.rel = 'noopener noreferrer';
+        linkA.textContent = 'View Live Demo / Project →';
+
+        linkDiv.appendChild(linkA);
+        section.appendChild(linkDiv);
+      }
+
+      container.appendChild(section);
+    });
+
+    initLightbox();
+    if (typeof window.refreshProjectFilters === 'function') {
+      window.refreshProjectFilters();
+    }
   } catch (_) {}
 }
 
@@ -279,11 +410,10 @@ function initHeroParallax() {
    ========================================================================== */
 function initProjectFilter() {
   const filterButtons = document.querySelectorAll('.filter-btn');
-  const projectCards = document.querySelectorAll('.project-card, .project-detail');
   const searchInput = document.getElementById('projectSearchInput');
   const countBadge = document.getElementById('projectCountBadge');
 
-  if (!filterButtons.length && !projectCards.length) return;
+  if (!filterButtons.length && !document.querySelector('.project-card, .project-detail')) return;
 
   let activeFilter = 'all';
   let currentSearch = '';
@@ -291,6 +421,7 @@ function initProjectFilter() {
   function applyFilters() {
     let visibleCount = 0;
     const query = currentSearch.toLowerCase().trim();
+    const projectCards = document.querySelectorAll('.project-card, .project-detail');
 
     projectCards.forEach(card => {
       const category = (card.getAttribute('data-category') || '').toLowerCase();
@@ -316,21 +447,26 @@ function initProjectFilter() {
     });
 
     if (countBadge) {
+      const totalCards = document.querySelectorAll('.project-card, .project-detail').length;
       if (query) {
         countBadge.textContent = visibleCount === 0
           ? `No projects match "${currentSearch}"`
-          : `Showing ${visibleCount} of ${projectCards.length} matching "${currentSearch}"`;
+          : `Showing ${visibleCount} of ${totalCards} matching "${currentSearch}"`;
       } else if (activeFilter !== 'all') {
         const activeBtn = document.querySelector(`.filter-btn[data-filter="${activeFilter}"]`);
         const filterName = activeBtn ? activeBtn.textContent.trim() : activeFilter;
         countBadge.textContent = `Showing ${visibleCount} ${filterName} Project${visibleCount === 1 ? '' : 's'}`;
       } else {
-        countBadge.textContent = `Showing All ${projectCards.length} Projects`;
+        countBadge.textContent = `Showing All ${totalCards} Projects`;
       }
     }
   }
 
+  window.refreshProjectFilters = applyFilters;
+
   filterButtons.forEach(btn => {
+    if (btn.dataset.filterBound) return;
+    btn.dataset.filterBound = 'true';
     btn.addEventListener('click', () => {
       filterButtons.forEach(b => {
         b.classList.remove('active');
@@ -344,7 +480,8 @@ function initProjectFilter() {
     });
   });
 
-  if (searchInput) {
+  if (searchInput && !searchInput.dataset.filterBound) {
+    searchInput.dataset.filterBound = 'true';
     let debounceTimer;
     searchInput.addEventListener('input', (e) => {
       clearTimeout(debounceTimer);
@@ -356,9 +493,7 @@ function initProjectFilter() {
   }
 
   // Initial count badge setup
-  if (countBadge && projectCards.length) {
-    countBadge.textContent = `Showing All ${projectCards.length} Projects`;
-  }
+  applyFilters();
 }
 
 /* ==========================================================================
@@ -390,6 +525,9 @@ function initLightbox() {
       overlayDiv.innerHTML = '<span>🔍 View Fullscreen</span>';
       frame.appendChild(overlayDiv);
     }
+
+    if (frame.dataset.lightboxBound) return;
+    frame.dataset.lightboxBound = 'true';
 
     frame.addEventListener('click', async () => {
       const user = window.requireAuthenticatedUser ? await window.requireAuthenticatedUser() : true;
@@ -451,6 +589,9 @@ function initLightbox() {
     currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length;
     updateModalView();
   }
+
+  if (overlay.dataset.lightboxInitialized) return;
+  overlay.dataset.lightboxInitialized = 'true';
 
   // Event handlers
   if (closeBtn) closeBtn.addEventListener('click', closeModal);

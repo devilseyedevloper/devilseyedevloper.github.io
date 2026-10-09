@@ -8,8 +8,11 @@ const PORT = process.env.PORT || 3000;
 const sessions = new Map();
 const dataDir = path.join(__dirname, 'data');
 const stateFile = path.join(dataDir, 'admin-state.json');
+const projectsFile = path.join(dataDir, 'projects.json');
+const uploadsDir = path.join(__dirname, 'public', 'images', 'uploads');
 
-app.use(express.json({ limit: '100kb' }));
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
 app.use((req, res, next) => {
   if (req.path.startsWith('/admin') || req.path.startsWith('/api/admin')) return next();
@@ -30,6 +33,23 @@ function readAdminState() {
 function writeAdminState(state) {
   fs.mkdirSync(dataDir, { recursive: true });
   fs.writeFileSync(stateFile, JSON.stringify(state, null, 2));
+}
+
+function readProjects() {
+  try {
+    return JSON.parse(fs.readFileSync(projectsFile, 'utf8'));
+  } catch (_) {
+    return [];
+  }
+}
+
+function writeProjects(projects) {
+  fs.mkdirSync(dataDir, { recursive: true });
+  fs.writeFileSync(projectsFile, JSON.stringify(projects, null, 2));
+}
+
+function ensureUploadsDir() {
+  fs.mkdirSync(uploadsDir, { recursive: true });
 }
 
 function isBlockedVisitor(req) {
@@ -88,15 +108,31 @@ function supabaseAuthRequest(pathname, method = 'GET') {
 }
 
 app.post('/api/admin/login', (req, res) => {
-  const { username, password } = req.body || {};
-  if (!process.env.ADMIN_USERNAME || !process.env.ADMIN_PASSWORD) {
+  const rawUser = String(req.body?.username || '').trim();
+  const rawPass = String(req.body?.password || '');
+
+  const envUser = (process.env.ADMIN_USERNAME || '').trim();
+  const envEmail = (process.env.ADMIN_EMAIL || '').trim();
+  const envPass = process.env.ADMIN_PASSWORD || '';
+
+  if (!envUser || !envPass) {
     return res.status(503).json({ error: 'Admin credentials are not configured on the server.' });
   }
-  if (!safeEqual(username, process.env.ADMIN_USERNAME) || !safeEqual(password, process.env.ADMIN_PASSWORD)) {
-    return res.status(401).json({ error: 'Invalid admin username or password.' });
+
+  const isUserMatch = rawUser.toLowerCase() === envUser.toLowerCase();
+  const isEmailMatch = Boolean(envEmail && rawUser.toLowerCase() === envEmail.toLowerCase());
+  const isUsernameMatch = isUserMatch || isEmailMatch;
+
+  if (!isUsernameMatch) {
+    return res.status(404).json({ error: 'Admin username not recognized.', isAdminMatch: false });
   }
+
+  if (!safeEqual(rawPass, envPass)) {
+    return res.status(401).json({ error: 'Incorrect admin password.', isAdminMatch: true });
+  }
+
   const token = crypto.randomBytes(32).toString('hex');
-  sessions.set(token, { username, createdAt: Date.now() });
+  sessions.set(token, { username: envUser, createdAt: Date.now() });
   res.json({ token });
 });
 
@@ -108,19 +144,23 @@ app.post('/api/admin/logout', requireAdmin, (req, res) => {
 
 app.get('/api/admin/overview', requireAdmin, async (req, res) => {
   try {
-    const [reviews, messages, users, profiles, orders] = await Promise.all([
+    const [reviews, messages, users, profiles, orders, dbProjects] = await Promise.all([
       supabaseRequest('reviews'),
       supabaseRequest('messages'),
       supabaseAuthRequest('/admin/users?per_page=1000'),
       supabaseRequest('profiles').catch(() => []),
-      supabaseRequest('orders').catch(() => [])
+      supabaseRequest('orders').catch(() => []),
+      supabaseRequest('projects', 'GET', undefined, '&order=created_at.desc').catch(() => null)
     ]);
     const profileMap = new Map((profiles || []).map(profile => [profile.id, profile]));
     const blockedUsers = readAdminState().blockedUsers || [];
+    const localProjects = readProjects();
+    const projects = (dbProjects && Array.isArray(dbProjects) && dbProjects.length > 0) ? dbProjects : localProjects;
     res.json({
       reviews: reviews || [],
       messages: messages || [],
       orders: orders || [],
+      projects: projects || [],
       users: (users?.users || []).map(user => ({
         id: user.id,
         email: user.email,
@@ -239,6 +279,166 @@ app.delete('/api/admin/hidden-screenshots', requireAdmin, (req, res) => {
   res.status(204).end();
 });
 
+// Public endpoint to retrieve all projects for projects.html
+app.get('/api/projects', async (req, res) => {
+  try {
+    let projects = null;
+    try {
+      projects = await supabaseRequest('projects', 'GET', undefined, '&order=created_at.desc');
+    } catch (_) {}
+    if (!projects || !Array.isArray(projects) || projects.length === 0) {
+      projects = readProjects();
+    }
+    res.json(projects);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Admin endpoint to post a new project with image uploads and write-up
+app.post('/api/admin/projects', requireAdmin, async (req, res) => {
+  try {
+    const {
+      title,
+      categoryLabel,
+      filterCategory,
+      status,
+      description,
+      features,
+      tech,
+      link,
+      images
+    } = req.body || {};
+
+    if (!title || !String(title).trim()) {
+      return res.status(400).json({ error: 'Project title is required.' });
+    }
+    if (!description || !String(description).trim()) {
+      return res.status(400).json({ error: 'Project description is required.' });
+    }
+
+    ensureUploadsDir();
+
+    const projectId = crypto.randomUUID ? crypto.randomUUID() : crypto.randomBytes(16).toString('hex');
+    const processedImages = [];
+
+    if (Array.isArray(images)) {
+      for (let i = 0; i < images.length; i++) {
+        const item = images[i];
+        if (typeof item === 'string') {
+          if (item.startsWith('data:image/')) {
+            const matches = item.match(/^data:image\/([a-zA-Z0-9+.-]+);base64,(.+)$/);
+            if (matches) {
+              const rawExt = matches[1].toLowerCase().replace('svg+xml', 'svg').replace('jpeg', 'jpg');
+              const ext = ['png', 'jpg', 'jpeg', 'webp', 'svg', 'gif'].includes(rawExt) ? rawExt : 'png';
+              const filename = `proj-${projectId}-${i + 1}-${Date.now()}.${ext}`;
+              const filePath = path.join(uploadsDir, filename);
+              fs.writeFileSync(filePath, Buffer.from(matches[2], 'base64'));
+              processedImages.push(`images/uploads/${filename}`);
+              continue;
+            }
+          }
+          processedImages.push(item);
+        } else if (item && typeof item === 'object' && item.data) {
+          const matches = String(item.data).match(/^data:image\/([a-zA-Z0-9+.-]+);base64,(.+)$/);
+          if (matches) {
+            const rawExt = matches[1].toLowerCase().replace('svg+xml', 'svg').replace('jpeg', 'jpg');
+            const ext = ['png', 'jpg', 'jpeg', 'webp', 'svg', 'gif'].includes(rawExt) ? rawExt : 'png';
+            const filename = `proj-${projectId}-${i + 1}-${Date.now()}.${ext}`;
+            const filePath = path.join(uploadsDir, filename);
+            fs.writeFileSync(filePath, Buffer.from(matches[2], 'base64'));
+            processedImages.push(`images/uploads/${filename}`);
+            continue;
+          }
+          if (item.url) processedImages.push(item.url);
+        }
+      }
+    }
+
+    const featureList = Array.isArray(features)
+      ? features.map(f => String(f).trim()).filter(Boolean)
+      : String(features || '')
+          .split(/[\r\n]+/)
+          .map(f => f.replace(/^[-•*✓]\s*/, '').trim())
+          .filter(Boolean);
+
+    const techList = Array.isArray(tech)
+      ? tech.map(t => String(t).trim()).filter(Boolean)
+      : String(tech || '')
+          .split(',')
+          .map(t => t.trim())
+          .filter(Boolean);
+
+    const newProject = {
+      id: projectId,
+      title: String(title).trim(),
+      categoryLabel: String(categoryLabel || 'Featured Project').trim(),
+      filterCategory: String(filterCategory || 'webapp fullstack').trim(),
+      status: String(status || '● Live Project').trim(),
+      description: String(description).trim(),
+      features: featureList,
+      tech: techList,
+      link: String(link || '').trim(),
+      images: processedImages,
+      created_at: new Date().toISOString()
+    };
+
+    const projects = readProjects();
+    projects.unshift(newProject);
+    writeProjects(projects);
+
+    try {
+      await supabaseRequest('projects', 'POST', {
+        id: newProject.id,
+        title: newProject.title,
+        category_label: newProject.categoryLabel,
+        filter_category: newProject.filterCategory,
+        status: newProject.status,
+        description: newProject.description,
+        features: newProject.features,
+        tech: newProject.tech,
+        link: newProject.link,
+        images: newProject.images,
+        created_at: newProject.created_at
+      });
+    } catch (_) {}
+
+    res.status(201).json(newProject);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Admin endpoint to delete a project
+app.delete('/api/admin/projects/:id', requireAdmin, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const projects = readProjects();
+    const target = projects.find(p => p.id === id);
+    const updated = projects.filter(p => p.id !== id);
+    writeProjects(updated);
+
+    if (target && Array.isArray(target.images)) {
+      target.images.forEach(img => {
+        if (typeof img === 'string' && img.startsWith('images/uploads/')) {
+          const filePath = path.join(__dirname, 'public', img);
+          try {
+            if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
+          } catch (_) {}
+        }
+      });
+    }
+
+    try {
+      await supabaseRequest('projects', 'DELETE', undefined, `&id=eq.${encodeURIComponent(id)}`);
+    } catch (_) {}
+
+    res.status(204).end();
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.get('/api/site-state', (req, res) => {
   res.json(readAdminState());
 });
@@ -246,6 +446,38 @@ app.get('/api/site-state', (req, res) => {
 app.get('/api/account-status/:id', (req, res) => {
   const blocked = (readAdminState().blockedUsers || []).some(item => item.id === req.params.id);
   res.json({ blocked });
+});
+
+app.post('/api/auth/profile', async (req, res) => {
+  try {
+    const { userId, username, email } = req.body || {};
+    if (!userId || !username || !email) {
+      return res.status(400).json({ error: 'userId, username and email are required.' });
+    }
+    // Create/update profile using service role to bypass RLS
+    const baseUrl = supabaseBaseUrl();
+    const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    if (!baseUrl || !serviceKey) {
+      return res.status(503).json({ error: 'Supabase service credentials not configured.' });
+    }
+    const response = await fetch(`${baseUrl}/rest/v1/profiles?id=eq.${encodeURIComponent(userId)}`, {
+      method: 'POST',
+      headers: {
+        apikey: serviceKey,
+        Authorization: `Bearer ${serviceKey}`,
+        'Content-Type': 'application/json',
+        Prefer: 'resolution=merge-duplicates'
+      },
+      body: JSON.stringify({ id: userId, username, email })
+    });
+    if (!response.ok) {
+      const text = await response.text();
+      return res.status(response.status).json({ error: 'Failed to create profile', details: text });
+    }
+    res.status(201).json({ success: true });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // Optional endpoint to securely provide public config from environment variables

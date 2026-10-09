@@ -212,7 +212,10 @@ async function handleAuthPage() {
 
     try {
       const password = passwordInput ? passwordInput.value : '';
-      if (!validatePassword(password)) {
+      if (!password) {
+        throw new Error('Please enter your password.');
+      }
+      if (mode === 'signup' && !validatePassword(password)) {
         throw new Error('Password must be 8+ characters long and contain only letters and numbers.');
       }
 
@@ -225,7 +228,15 @@ async function handleAuthPage() {
         const result = await client.auth.signUp({ email, password });
         if (result.error) throw result.error;
         if (result.data?.user) {
-          await saveProfile(client, result.data.user.id, username, email);
+          try {
+            await fetch('/api/auth/profile', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ userId: result.data.user.id, username, email })
+            });
+          } catch (_) {
+            // Profile creation is best-effort; continue even if it fails
+          }
         }
         showStatus('Account created successfully! Check your email to confirm it, then log in.', 'success');
         setMode('login');
@@ -236,24 +247,56 @@ async function handleAuthPage() {
       const identifier = identifierInput.value.trim();
       if (!identifier) throw new Error('Enter your username or email.');
 
-      const adminLoginResponse = await fetch('/api/admin/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: identifier, password })
-      });
-      if (adminLoginResponse.ok) {
-        const adminData = await adminLoginResponse.json();
+      let adminLoginResponse = null;
+      let adminData = null;
+      try {
+        adminLoginResponse = await fetch('/api/admin/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username: identifier, password })
+        });
+        adminData = await adminLoginResponse.json().catch(() => null);
+      } catch (_) {
+        // Backend server may be offline or unreachable
+      }
+
+      if (adminLoginResponse?.ok && adminData?.token) {
         localStorage.setItem('swc_admin_token', adminData.token);
         window.location.href = 'admin.html';
         return;
       }
 
-      if (!client) throw new Error('Admin credentials were not accepted, and public account access is not configured.');
+      // Check if admin login was intended or failed
+      if (adminLoginResponse) {
+        if (adminLoginResponse.status === 401 && adminData?.isAdminMatch) {
+          throw new Error('Incorrect password for admin account.');
+        }
+        if (adminLoginResponse.status === 503 && (identifier.toLowerCase() === 'loqadmin' || identifier.toLowerCase().includes('admin'))) {
+          throw new Error('Admin credentials are not configured on the server. Please check your .env file.');
+        }
+        if (adminLoginResponse.status === 404 && (identifier.toLowerCase() === 'loqadmin' || identifier.toLowerCase() === 'admin')) {
+          throw new Error('Admin login endpoint not found. Ensure the Node.js server ("node server.js") is running on port 3000.');
+        }
+      } else if (identifier.toLowerCase() === 'loqadmin' || identifier.toLowerCase() === 'admin') {
+        throw new Error('Cannot connect to admin server. Ensure the backend server is running ("node server.js") on port 3000.');
+      }
+
+      if (!client) {
+        if (identifier.toLowerCase() === 'loqadmin' || identifier.toLowerCase() === 'admin') {
+          throw new Error('Admin credentials were not recognized. Please check your credentials and make sure the server is running.');
+        }
+        throw new Error('Admin credentials were not accepted, and public account access is not configured.');
+      }
 
       let email = identifier;
       if (!identifier.includes('@')) {
         email = await findEmailByUsername(client, identifier);
-        if (!email) throw new Error('No account found for that username.');
+        if (!email) {
+          if (identifier.toLowerCase() === 'loqadmin' || identifier.toLowerCase() === 'admin') {
+            throw new Error('Admin credentials were not recognized. Make sure "node server.js" is running and credentials match .env.');
+          }
+          throw new Error('No account found for that username.');
+        }
       }
       const result = await client.auth.signInWithPassword({ email, password });
       if (result.error) throw result.error;
@@ -264,7 +307,7 @@ async function handleAuthPage() {
       }
       saveAuthMeta({ remember: Boolean(rememberMe?.checked), lastActive: Date.now() });
       sessionStorage.setItem(AUTH_SESSION_KEY, 'active');
-      window.location.href = 'index.html';
+      window.location.href = 'account.html';
     } catch (error) {
       const message = error.message || 'Unable to complete account access.';
       const formatted = /signups? not allowed|disable signups/i.test(message)

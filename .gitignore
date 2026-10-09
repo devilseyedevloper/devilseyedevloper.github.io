@@ -7,3 +7,4 @@ ratings.txt
 ratings.json
 .env
 .vs/
+*.lnk
