@@ -487,7 +487,11 @@ textarea { resize: vertical; min-height: 120px; }
 .auth-field-group label { font-size: 0.84rem; font-weight: 600; }
 .auth-input-wrapper { position: relative; display: flex; align-items: center; }
 .auth-field-icon { position: absolute; left: 12px; color: var(--faint); pointer-events: none; }
-.auth-input-wrapper input { padding-left: 38px; }
+.auth-input-wrapper { width: 100%; min-width: 0; }
+.auth-input-wrapper input { flex: 1 1 0; width: 100%; min-width: 0; padding-left: 38px; }
+#authLoginField { width: 100%; flex-direction: column; align-items: stretch; }
+#authSignupFields { width: 100%; flex-direction: column; align-items: stretch; }
+#authSignupFields > .auth-field-group { width: 100%; min-width: 0; }
 .password-toggle-btn { position: absolute; right: 8px; background: none; border: none; color: var(--faint); cursor: pointer; padding: 6px; }
 .auth-hint { font-size: 0.78rem; color: var(--faint); }
 .auth-options-row { margin: 12px 0; font-size: 0.84rem; color: var(--muted); }
