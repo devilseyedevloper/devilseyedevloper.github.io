@@ -1,22 +1,31 @@
 ﻿/**
- * Supabase Configuration for Singh Web Creations
+ * Supabase + backend configuration for Singh Web Creations
  *
- * Safe for frontend use: Only the public anon key is used.
- * Never paste the service_role key here.
+ * The Supabase URL and publishable key below are *browser-public* values:
+ * they are meant to ship to every visitor's browser and are protected by Row
+ * Level Security. NEVER put the service_role / secret key here — that one
+ * stays on the Node backend in .env only.
  *
- * To connect your live Supabase database:
- * 1. Open your Supabase Dashboard (https://supabase.com)
- * 2. Run the SQL from supabase-schema.sql in the SQL Editor
- * 3. Go to Project Settings -> API
- * 4. Set the url and anonKey values below:
+ * They are baked in as defaults so signup and login also work when the site
+ * is served statically (GitHub Pages), where nothing answers /api/config.
+ * When the Node backend IS running it still overrides them at startup.
+ *
+ * To point the pages at a deployed backend (Render / Railway / Heroku /
+ * localhost), set window.ENV_API_BASE before loading this file:
+ *   <script>window.ENV_API_BASE = 'https://my-backend.onrender.com';</script>
  */
 window.SUPABASE_CONFIG = {
-  url: window.ENV_SUPABASE_URL || 'YOUR_SUPABASE_URL',
-  anonKey: window.ENV_SUPABASE_ANON_KEY || 'YOUR_SUPABASE_ANON_KEY'
+  url: window.ENV_SUPABASE_URL || 'https://idwdqubqkbqozkkrduxw.supabase.co',
+  anonKey: window.ENV_SUPABASE_ANON_KEY || 'sb_publishable_hsSdlcrsfC8RkTbIjFHplA_ig8AAc6I'
 };
 
-window.SUPABASE_CONFIG_READY = fetch('/api/config')
-  .then(response => response.ok ? response.json() : null)
+// Origin of the optional Node backend ('' = same origin). Static hosts cannot
+// serve /api/*; every call below degrades gracefully when it 404s.
+window.API_BASE = String(window.ENV_API_BASE || '').replace(/\/+$/, '');
+window.apiUrl = (path) => `${window.API_BASE}${path}`;
+
+window.SUPABASE_CONFIG_READY = fetch(window.apiUrl('/api/config'))
+  .then(response => (response.ok ? response.json() : null))
   .then(config => {
     if (config?.supabaseUrl && config?.supabaseAnonKey) {
       window.SUPABASE_CONFIG.url = config.supabaseUrl;

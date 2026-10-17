@@ -394,10 +394,18 @@ function initProjectForm() {
   });
 }
 
+const adminApiUrl = window.apiUrl || ((path) => path);
+
 async function request(url, options = {}) {
-  const response = await fetch(url, { ...options, headers: { ...headers(), ...(options.headers || {}) } });
-  const data = response.status === 204 ? null : await response.json();
-  if (!response.ok) throw new Error(data?.error || 'Request failed.');
+  const response = await fetch(adminApiUrl(url), { ...options, headers: { ...headers(), ...(options.headers || {}) } });
+  const data = response.status === 204 ? null : await response.json().catch(() => null);
+  if (!response.ok) {
+    if (response.status === 401) throw new Error(data?.error || 'Admin session expired. Please log in again.');
+    if (response.status === 404 || response.status === 405) {
+      throw new Error('Admin backend not found at this address. Start it with "node server.js", or set window.ENV_API_BASE in js/supabase-config.js to your deployed backend.');
+    }
+    throw new Error(data?.error || `Request failed (${response.status}).`);
+  }
   return data;
 }
 
@@ -437,13 +445,18 @@ $('#loginForm').addEventListener('submit', async event => {
   try {
     const username = $('#username').value.trim();
     const password = $('#password').value;
-    const response = await fetch('/api/admin/login', {
+    const response = await fetch(adminApiUrl('/api/admin/login'), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, password })
     });
     const data = await response.json().catch(() => null);
-    if (!response.ok) throw new Error(data?.error || 'Login failed.');
+    if (!response.ok) {
+      if (response.status === 404 || response.status === 405) {
+        throw new Error('Admin backend not found at this address. Start it with "node server.js", or set window.ENV_API_BASE in js/supabase-config.js to your deployed backend.');
+      }
+      throw new Error(data?.error || 'Login failed.');
+    }
     localStorage.setItem(tokenKey, data.token);
     showDashboard();
   } catch (error) {

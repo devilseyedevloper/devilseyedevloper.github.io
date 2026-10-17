@@ -3,6 +3,10 @@
  * Pure Vanilla JavaScript — 60 FPS, High Performance, Zero Dependencies
  */
 
+// Optional Node backend (same-origin unless window.ENV_API_BASE is set).
+// Without a backend these endpoints simply 404 and are ignored.
+const siteApiUrl = window.apiUrl || ((path) => path);
+
 document.addEventListener('DOMContentLoaded', () => {
   initMobileNav();
   initTypewriter();
@@ -26,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function initSiteState() {
   try {
-    const response = await fetch('/api/site-state');
+    const response = await fetch(siteApiUrl('/api/site-state'));
     if (!response.ok) return;
     const state = await response.json();
     (state.hiddenScreenshots || []).forEach(src => {
@@ -43,7 +47,7 @@ async function initDynamicProjects() {
   if (!container) return;
 
   try {
-    const response = await fetch('/api/projects');
+    const response = await fetch(siteApiUrl('/api/projects'));
     if (!response.ok) return;
     const projects = await response.json();
     if (!Array.isArray(projects) || projects.length === 0) return;

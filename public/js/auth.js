@@ -1,6 +1,13 @@
 const AUTH_META_KEY = 'swc_auth_meta';
 const AUTH_SESSION_KEY = 'swc_auth_session';
+const PENDING_PROFILE_KEY = 'swc_pending_profile';
 const THREE_DAYS_MS = 3 * 24 * 60 * 60 * 1000;
+
+// Optional Node backend: same-origin by default, or window.ENV_API_BASE when
+// the server is deployed elsewhere. On static hosting (GitHub Pages) these
+// calls 404 and every one of them is treated as optional.
+// NOTE: unique name — main.js loads alongside this file on most pages.
+const authApiUrl = window.apiUrl || ((path) => path);
 
 function authClient() {
   if (typeof window.supabase === 'undefined' || !window.SUPABASE_CONFIG) return null;
@@ -230,18 +237,52 @@ async function handleAuthPage() {
         if (!/^[a-zA-Z0-9_.-]+$/.test(username)) throw new Error('Username can only contain letters, numbers, dots, underscores, and hyphens.');
         const result = await client.auth.signUp({ email, password });
         if (result.error) throw result.error;
+        let profileSaved = false;
         if (result.data?.user) {
+          // Remember the username so the profile row can be written after the
+          // email is confirmed: until then there is no session, and RLS
+          // correctly rejects anonymous writes to someone else's row.
           try {
-            await fetch('/api/auth/profile', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ userId: result.data.user.id, username, email })
-            });
-          } catch (_) {
-            // Profile creation is best-effort; continue even if it fails
+            localStorage.setItem(PENDING_PROFILE_KEY, JSON.stringify({
+              userId: result.data.user.id, username, email
+            }));
+          } catch (_) { /* storage may be unavailable */ }
+
+          // If the project signs users in immediately, create the row now.
+          if (result.data.session) {
+            try {
+              const { error: profileError } = await client
+                .from('profiles')
+                .upsert({ id: result.data.user.id, username, email }, { onConflict: 'id' });
+              profileSaved = !profileError;
+            } catch (_) {
+              profileSaved = false;
+            }
+          }
+
+          // Fallback for deployments that still run the Node backend.
+          if (!profileSaved) {
+            try {
+              const saved = await fetch(authApiUrl('/api/auth/profile'), {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ userId: result.data.user.id, username, email })
+              });
+              profileSaved = saved.ok;
+            } catch (_) {
+              profileSaved = false;
+            }
+          }
+
+          if (profileSaved) {
+            try { localStorage.removeItem(PENDING_PROFILE_KEY); } catch (_) {}
           }
         }
-        showStatus('Account created successfully! Check your email to confirm it, then log in.', 'success');
+        showStatus(result.data?.session
+          ? 'Account created successfully! You can log in now with your username or email.'
+          : profileSaved
+            ? 'Account created! Confirm your email from the message we just sent, then log in.'
+            : 'Account created! Confirm your email, then log in once with your email address — your username is activated automatically after that first login.', 'success');
         setMode('login');
         form.reset();
         return;
@@ -253,7 +294,7 @@ async function handleAuthPage() {
       let adminLoginResponse = null;
       let adminData = null;
       try {
-        adminLoginResponse = await fetch('/api/admin/login', {
+        adminLoginResponse = await fetch(authApiUrl('/api/admin/login'), {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ username: identifier, password })
@@ -274,14 +315,14 @@ async function handleAuthPage() {
         if (adminLoginResponse.status === 401 && adminData?.isAdminMatch) {
           throw new Error('Incorrect password for admin account.');
         }
-        if (adminLoginResponse.status === 503 && (identifier.toLowerCase() === 'loqadmin' || identifier.toLowerCase().includes('admin'))) {
+        if (adminLoginResponse.status === 503 && identifier.toLowerCase().includes('admin')) {
           throw new Error('Admin credentials are not configured on the server. Please check your .env file.');
         }
-        if (adminLoginResponse.status === 404 && (identifier.toLowerCase() === 'loqadmin' || identifier.toLowerCase() === 'admin')) {
-          throw new Error('Admin login endpoint not found. Ensure the Node.js server ("node server.js") is running on port 3000.');
+        if (adminLoginResponse.status === 404 && identifier.toLowerCase().includes('admin')) {
+          throw new Error('Admin login server not found at this address. Admin access needs the Node backend: run "node server.js", or deploy it and set window.ENV_API_BASE in js/supabase-config.js. (Static hosts like GitHub Pages cannot run it.)');
         }
-      } else if (identifier.toLowerCase() === 'loqadmin' || identifier.toLowerCase() === 'admin') {
-        throw new Error('Cannot connect to admin server. Ensure the backend server is running ("node server.js") on port 3000.');
+      } else if (identifier.toLowerCase().includes('admin')) {
+        throw new Error('Cannot connect to the admin server. Ensure the backend is running ("node server.js"), or set window.ENV_API_BASE in js/supabase-config.js to your deployed backend.');
       }
 
       if (!client) {
@@ -303,7 +344,28 @@ async function handleAuthPage() {
       }
       const result = await client.auth.signInWithPassword({ email, password });
       if (result.error) throw result.error;
-      const accountStatus = await fetch(`/api/account-status/${encodeURIComponent(result.data.user.id)}`).then(response => response.json());
+
+      // Self-heal: a signup made while email confirmation was still pending
+      // could not write its profile row (no session => RLS rejected it). Now
+      // that we are authenticated, write it so username login works next time.
+      try {
+        const pending = JSON.parse(localStorage.getItem(PENDING_PROFILE_KEY) || 'null');
+        if (pending && (pending.userId === result.data.user.id ||
+          String(pending.email || '').toLowerCase() === email.toLowerCase())) {
+          const { error: healError } = await client
+            .from('profiles')
+            .upsert({ id: result.data.user.id, username: pending.username, email: pending.email }, { onConflict: 'id' });
+          if (!healError) localStorage.removeItem(PENDING_PROFILE_KEY);
+        }
+      } catch (_) { /* non-critical */ }
+
+      // The blocked list lives on the Node backend. Without it (static
+      // hosting) assume "not blocked" instead of failing a valid login.
+      let accountStatus = { blocked: false };
+      try {
+        const statusResponse = await fetch(authApiUrl(`/api/account-status/${encodeURIComponent(result.data.user.id)}`));
+        if (statusResponse.ok) accountStatus = await statusResponse.json();
+      } catch (_) { /* no backend running => cannot be blocked */ }
       if (accountStatus.blocked) {
         await client.auth.signOut();
         throw new Error('This account has been blocked by the administrator.');
@@ -315,7 +377,9 @@ async function handleAuthPage() {
       const message = error.message || 'Unable to complete account access.';
       const formatted = /signups? not allowed|disable signups/i.test(message)
         ? 'New account registration is currently disabled. Enable Allow new users to sign up in Supabase Authentication settings, then try again.'
-        : message;
+        : /rate limit/i.test(message)
+          ? 'Too many sign-up attempts right now. Please wait a few minutes before trying again.'
+          : message;
       showStatus(formatted, 'error');
     } finally {
       submit.disabled = false;
