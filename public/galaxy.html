@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>Spiral Galaxy Background</title>
+  <style>
+    /* Full-bleed, chrome-free stage: no borders, no scrollbars, no UI. */
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+    }
+    #galaxy-bg {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      pointer-events: none;
+      background: radial-gradient(ellipse at center, #0a0f1a 0%, #05070c 60%, #000000 100%);
+    }
+    #galaxy-canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .galaxy-vignette {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.45) 100%);
+    }
+  </style>
+</head>
+<body>
+  <div id="galaxy-bg"><canvas id="galaxy-canvas"></canvas></div>
+  <div class="galaxy-vignette"></div>
+  <script src="js/galaxy.js"></script>
+</body>
+</html>

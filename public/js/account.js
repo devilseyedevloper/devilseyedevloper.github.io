@@ -113,7 +113,7 @@ async function initAccount() {
     if (!ordersResult.data?.length) {
       ordersList.innerHTML = `
         <div class="empty-orders-state">
-          <span class="empty-icon">📂</span>
+          <span class="empty-icon"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 14 4.6 11.1A2 2 0 0 1 4.4 10H3a1 1 0 0 1-1-1V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.66.9l.82 1.2a2 2 0 0 0 1.66.9H18a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1h-1.4a2 2 0 0 0-1.55.75l-1.2 1.5A2 2 0 0 1 12 20H6a2 2 0 0 1-2-2z"/></svg></span>
           <h3>No active projects yet</h3>
           <p>Ready to start a new web application or website? Submit your project details below to begin.</p>
           <button type="button" class="btn btn-secondary small" id="emptyStateOrderBtnInner">Create First Project Request</button>

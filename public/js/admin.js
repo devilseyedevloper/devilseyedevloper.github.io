@@ -255,7 +255,7 @@ function initProjectForm() {
       const removeBtn = document.createElement('button');
       removeBtn.type = 'button';
       removeBtn.className = 'preview-remove';
-      removeBtn.innerHTML = '✕';
+      removeBtn.innerHTML = '<svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>';
       removeBtn.title = 'Remove image';
       removeBtn.addEventListener('click', () => {
         attachedImages.splice(idx, 1);
@@ -352,7 +352,7 @@ function initProjectForm() {
     }
 
     submitBtn.disabled = true;
-    submitBtn.textContent = '⏳ Publishing Project...';
+    submitBtn.textContent = 'Publishing Project...';
 
     try {
       const payload = {
@@ -389,7 +389,7 @@ function initProjectForm() {
       formStatus.textContent = `Error: ${err.message}`;
     } finally {
       submitBtn.disabled = false;
-      submitBtn.textContent = '🚀 Publish Project to Showcase';
+      submitBtn.textContent = 'Publish Project to Showcase';
     }
   });
 }

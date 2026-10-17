@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -49,6 +49,8 @@
   </style>
 </head>
 <body>
+  <div id="galaxy-bg"><canvas id="galaxy-canvas"></canvas></div>
+  <div class="galaxy-vignette"></div>
   <main class="admin-shell">
     <section id="loginPanel" class="admin-card">
       <span class="section-tag">Private Area</span>
@@ -70,7 +72,7 @@
         <section class="admin-panel admin-panel-full">
           <div class="admin-panel-heading">
             <div>
-              <h2>🚀 Add &amp; Publish Project</h2>
+              <h2><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg> Add &amp; Publish Project</h2>
               <p class="admin-muted">Upload screenshot images, write project details, and publish directly to the public <a href="projects.html" target="_blank" style="color: var(--accent-cyan); text-decoration: underline;">Projects Showcase page</a>.</p>
             </div>
           </div>
@@ -117,9 +119,9 @@
             </div>
 
             <div>
-              <label style="margin-bottom: 8px;">📸 Project Screenshots &amp; Images</label>
+              <label style="margin-bottom: 8px;"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg> Project Screenshots &amp; Images</label>
               <div id="dropzone" class="dropzone">
-                <p style="margin: 0; font-size: 1.05rem;">📁 Click or drag &amp; drop screenshot images here</p>
+                <p style="margin: 0; font-size: 1.05rem;"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg> Click or drag &amp; drop screenshot images here</p>
                 <p class="admin-muted" style="margin: 4px 0 0; font-size: 0.85rem;">Supports PNG, JPG, WEBP, SVG, GIF (Multiple images supported)</p>
                 <input type="file" id="projImages" accept="image/*" multiple>
               </div>
@@ -133,7 +135,7 @@
             </div>
 
             <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: 10px;">
-              <button id="submitProjectBtn" class="btn btn-primary" type="submit" style="padding: 13px 28px; font-size: 1rem;">🚀 Publish Project to Showcase</button>
+              <button id="submitProjectBtn" class="btn btn-primary" type="submit" style="padding: 13px 28px; font-size: 1rem;"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg> Publish Project to Showcase</button>
               <span id="projectFormStatus" class="admin-status" role="status"></span>
             </div>
           </form>
@@ -143,7 +145,7 @@
         <section class="admin-panel admin-panel-full">
           <div class="admin-panel-heading">
             <div>
-              <h2>📂 Published Projects</h2>
+              <h2><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 14 1.45-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.55 6a2 2 0 0 1-1.94 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.93a2 2 0 0 1 1.66.9l.82 1.2a2 2 0 0 0 1.66.9H18a2 2 0 0 1 2 2v2"/></svg> Published Projects</h2>
               <p class="admin-muted">Manage projects posted to your public showcase.</p>
             </div>
           </div>
@@ -160,5 +162,7 @@
     </section>
   </main>
   <script src="js/admin.js"></script>
+  <script src="js/galaxy.js"></script>
 </body>
 </html>
+

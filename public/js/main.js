@@ -105,7 +105,7 @@ async function initDynamicProjects() {
       if (Array.isArray(project.images) && project.images.length > 0) {
         const galleryH3 = document.createElement('h3');
         galleryH3.style.cssText = 'font-size: 1rem; color: var(--text-muted); margin-bottom: 10px;';
-        galleryH3.textContent = '📸 Screenshot Gallery (Click to enlarge & navigate):';
+        galleryH3.innerHTML = '<svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg> Screenshot Gallery (Click to enlarge &amp; navigate):';
         section.appendChild(galleryH3);
 
         const framesDiv = document.createElement('div');
@@ -522,7 +522,7 @@ function initLightbox() {
     if (!frame.querySelector('.frame-overlay')) {
       const overlayDiv = document.createElement('div');
       overlayDiv.className = 'frame-overlay';
-      overlayDiv.innerHTML = '<span>🔍 View Fullscreen</span>';
+      overlayDiv.innerHTML = '<span><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg> View Fullscreen</span>';
       frame.appendChild(overlayDiv);
     }
 
@@ -1543,9 +1543,7 @@ async function initReviewSection() {
           ${starsHtml}
           <span class="card-rating-num">${ratingLabelText}</span>
         </div>
-        <time class="card-date" datetime="${safeDate}">
-          📅 ${dateDisplay}
-        </time>
+        <time class="card-date" datetime="${safeDate}">${dateDisplay}</time>
       </div>
       <p class="card-review-text">${escapeHTML(review.review)}</p>
       <div class="card-author-footer">
@@ -1943,7 +1941,7 @@ function initScopeCalculator() {
     // Update estimated delivery timeline
     if (timelineEl) {
       if (isRush) {
-        timelineEl.textContent = `2–3 Business Days (Express Rush ⚡)`;
+        timelineEl.textContent = `2–3 Business Days (Express Rush)`;
       } else {
         timelineEl.textContent = `${minDays}–${maxDays} Business Days`;
       }

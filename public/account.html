@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -14,6 +14,8 @@
   <script src="js/supabase-config.js"></script>
 </head>
 <body class="account-body">
+  <div id="galaxy-bg"><canvas id="galaxy-canvas"></canvas></div>
+  <div class="galaxy-vignette"></div>
   <header class="auth-header">
     <div class="auth-header-inner">
       <a class="logo auth-logo-brand" href="index.html" aria-label="Singh Web Creations Home">
@@ -63,13 +65,13 @@
       <!-- Dashboard Tab Switcher -->
       <div class="account-tabs" role="tablist" aria-label="Client portal navigation">
         <button class="account-tab-btn active" type="button" role="tab" aria-selected="true" data-tab="orders">
-          <span>📁 My Projects &amp; Orders</span>
+          <span><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg> My Projects &amp; Orders</span>
         </button>
         <button class="account-tab-btn" type="button" role="tab" aria-selected="false" data-tab="new-order">
-          <span>➕ Launch New Project</span>
+          <span><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="M12 5v14"/></svg> Launch New Project</span>
         </button>
         <button class="account-tab-btn" type="button" role="tab" aria-selected="false" data-tab="settings">
-          <span>⚙️ Account &amp; Security</span>
+          <span><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg> Account &amp; Security</span>
         </button>
       </div>
 
@@ -85,7 +87,7 @@
 
         <div id="ordersList" class="orders-container">
           <div class="empty-orders-state">
-            <span class="empty-icon">📂</span>
+            <span class="empty-icon"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 14 1.45-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.55 6a2 2 0 0 1-1.94 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.93a2 2 0 0 1 1.66.9l.82 1.2a2 2 0 0 0 1.66.9H18a2 2 0 0 1 2 2v2"/></svg></span>
             <h3>No active projects yet</h3>
             <p>Ready to start a new web application or website? Submit your project details below to begin.</p>
             <button type="button" class="btn btn-secondary small" id="emptyStateOrderBtn">Create First Project Request</button>
@@ -212,5 +214,7 @@
   </main>
 
   <script src="js/account.js"></script>
+  <script src="js/galaxy.js"></script>
 </body>
 </html>
+

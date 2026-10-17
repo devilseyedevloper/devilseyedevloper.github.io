@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -15,17 +15,19 @@
   <script src="js/supabase-config.js"></script>
 </head>
 <body>
+  <div id="galaxy-bg"><canvas id="galaxy-canvas"></canvas></div>
+  <div class="galaxy-vignette"></div>
   <!-- Mobile Navigation Backdrop & Drawer -->
   <div class="mobile-drawer-backdrop"></div>
   <aside class="mobile-nav-drawer" aria-label="Mobile navigation">
-    <a href="index.html"><span>🏠</span> Home</a>
-    <a href="about.html"><span>👤</span> About</a>
-    <a href="skills.html"><span>⚡</span> Skills</a>
-    <a href="projects.html"><span>💼</span> Projects</a>
-    <a href="features.html" class="active"><span>⚙️</span> Services</a>
+    <a href="index.html"><span><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span> Home</a>
+    <a href="about.html"><span><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span> About</a>
+    <a href="skills.html"><span><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg></span> Skills</a>
+    <a href="projects.html"><span><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span> Projects</a>
+    <a href="features.html" class="active"><span><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></span> Services</a>
     <a href="pricing.html"><span>₹</span> Pricing</a>
-    <a href="reviews.html"><span>⭐</span> Reviews</a>
-    <a href="contact.html"><span>✉️</span> Contact</a>
+    <a href="reviews.html"><span>★</span> Reviews</a>
+    <a href="contact.html"><span><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span> Contact</a>
     <div style="margin-top: auto; display: flex; flex-direction: column; gap: 10px;">
       <a class="btn btn-primary" href="contact.html">Request a Quote</a>
       <a class="btn btn-secondary" href="Gursimran Singh Resume.pdf" download="Gursimran Singh Resume.pdf" target="_blank" rel="noopener noreferrer">Download Resume</a>
@@ -76,7 +78,7 @@
     <section class="services-grid">
       <!-- Service 1 -->
       <div class="service">
-        <span class="service-icon">🎨</span>
+        <span class="service-icon"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg></span>
         <h3>Custom UI/UX &amp; Web Design</h3>
         <p>Bespoke, high-converting digital interfaces crafted to reflect your brand identity with flawless typography and modern glassmorphism.</p>
         <ul class="service-deliverables">
@@ -92,7 +94,7 @@
 
       <!-- Service 2 -->
       <div class="service">
-        <span class="service-icon">⚙️</span>
+        <span class="service-icon"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></span>
         <h3>Full-Stack Web Development</h3>
         <p>Clean, modular, and maintainable applications built with JavaScript, Node.js, and Express for rapid execution and seamless scalability.</p>
         <ul class="service-deliverables">
@@ -108,7 +110,7 @@
 
       <!-- Service 3 -->
       <div class="service">
-        <span class="service-icon">📱</span>
+        <span class="service-icon"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span>
         <h3>Mobile-First Responsive Design</h3>
         <p>Every element is engineered to look and perform brilliantly on smartphones, tablets, laptops, and ultra-wide desktop monitors.</p>
         <ul class="service-deliverables">
@@ -124,7 +126,7 @@
 
       <!-- Service 4 -->
       <div class="service">
-        <span class="service-icon">🔗</span>
+        <span class="service-icon"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span>
         <h3>Automations &amp; Integrations</h3>
         <p>Connect your web app to the tools you use daily — WhatsApp direct chats, Formspree email alerts, payment processors, and webhooks.</p>
         <ul class="service-deliverables">
@@ -140,7 +142,7 @@
 
       <!-- Service 5 -->
       <div class="service">
-        <span class="service-icon">⚡</span>
+        <span class="service-icon"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg></span>
         <h3>Performance &amp; Speed Tuning</h3>
         <p>Sub-second load times and smooth 60fps animations. Fast websites rank higher on Google and keep visitors engaged longer.</p>
         <ul class="service-deliverables">
@@ -156,7 +158,7 @@
 
       <!-- Service 6 -->
       <div class="service">
-        <span class="service-icon">🚀</span>
+        <span class="service-icon"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></span>
         <h3>Deployment, Hosting &amp; Support</h3>
         <p>Hassle-free launch from start to finish. I handle domain configuration, SSL certificates, hosting setup, and post-launch maintenance.</p>
         <ul class="service-deliverables">
@@ -263,7 +265,7 @@
       <p>Have specific features or a target deadline? Let's talk through your vision and create a plan of action.</p>
       <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
         <a href="contact.html" class="btn btn-primary btn-large">Get Started Now →</a>
-        <a href="https://wa.me/9988113050?text=Hello%20Gursimran,%20I%20have%20a%20question%20about%20your%20services" class="btn btn-secondary btn-large" target="_blank" rel="noopener noreferrer">💬 Chat on WhatsApp</a>
+        <a href="https://wa.me/9988113050?text=Hello%20Gursimran,%20I%20have%20a%20question%20about%20your%20services" class="btn btn-secondary btn-large" target="_blank" rel="noopener noreferrer"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Chat on WhatsApp</a>
       </div>
     </section>
   </main>
@@ -274,10 +276,10 @@
         <h4>Singh Web Creations</h4>
         <p>Full-Stack Web Developer &amp; UI Specialist</p>
         <div class="footer-contact-item">
-          <span>📞</span> Phone: <a href="tel:9988113050">9988113050</a>
+          <span><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span> Phone: <a href="tel:9988113050">9988113050</a>
         </div>
         <div class="footer-contact-item">
-          <span>✉️</span> Email: <a href="mailto:gursimransingh240608@gmail.com">gursimransingh240608@gmail.com</a>
+          <span><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span> Email: <a href="mailto:gursimransingh240608@gmail.com">gursimransingh240608@gmail.com</a>
         </div>
       </div>
 
@@ -313,5 +315,7 @@
 
   <script src="js/main.js"></script>
   <script src="js/auth.js"></script>
+  <script src="js/galaxy.js"></script>
 </body>
 </html>
+

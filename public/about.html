@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -16,17 +16,19 @@
   <script src="js/supabase-config.js"></script>
 </head>
 <body>
+  <div id="galaxy-bg"><canvas id="galaxy-canvas"></canvas></div>
+  <div class="galaxy-vignette"></div>
   <!-- Mobile Navigation Backdrop & Drawer -->
   <div class="mobile-drawer-backdrop"></div>
   <aside class="mobile-nav-drawer" aria-label="Mobile navigation">
-    <a href="index.html"><span>🏠</span> Home</a>
-    <a href="about.html" class="active"><span>👤</span> About</a>
-    <a href="skills.html"><span>⚡</span> Skills</a>
-    <a href="projects.html"><span>💼</span> Projects</a>
-    <a href="features.html"><span>⚙️</span> Services</a>
+    <a href="index.html"><span><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span> Home</a>
+    <a href="about.html" class="active"><span><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span> About</a>
+    <a href="skills.html"><span><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg></span> Skills</a>
+    <a href="projects.html"><span><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span> Projects</a>
+    <a href="features.html"><span><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></span> Services</a>
     <a href="pricing.html"><span>₹</span> Pricing</a>
-    <a href="reviews.html"><span>⭐</span> Reviews</a>
-    <a href="contact.html"><span>✉️</span> Contact</a>
+    <a href="reviews.html"><span>★</span> Reviews</a>
+    <a href="contact.html"><span><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span> Contact</a>
     <div style="margin-top: auto; display: flex; flex-direction: column; gap: 10px;">
       <a class="btn btn-primary" href="contact.html">Let's Talk</a>
       <a class="btn btn-secondary" href="Gursimran Singh Resume.pdf" download="Gursimran Singh Resume.pdf" target="_blank" rel="noopener noreferrer">Download Resume</a>
@@ -88,16 +90,16 @@
         <p style="color: var(--accent-cyan); font-weight: 500; font-size: 0.92rem; margin-bottom: 12px;">Full-Stack Web Developer &amp; UI Specialist</p>
         
         <div style="display: inline-flex; align-items: center; gap: 8px; font-size: 0.82rem; color: var(--text-dim); margin-bottom: 20px;">
-          <span>📍 Punjab, India</span>
+          <span><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg> Punjab, India</span>
           <span>●</span>
           <span style="color: var(--accent-emerald);">● Remote Worldwide</span>
         </div>
 
         <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">
           <a class="btn btn-primary" href="contact.html">Get in Touch →</a>
-          <a class="btn btn-secondary" href="Gursimran Singh Resume.pdf" download="Gursimran Singh Resume.pdf" target="_blank" rel="noopener noreferrer">📄 Download Resume</a>
+          <a class="btn btn-secondary" href="Gursimran Singh Resume.pdf" download="Gursimran Singh Resume.pdf" target="_blank" rel="noopener noreferrer"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg> Download Resume</a>
           <button class="btn-copy" data-copy="gursimransingh240608@gmail.com" title="Click to copy email">
-            <span>📋 Copy Email</span>
+            <span><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg> Copy Email</span>
           </button>
         </div>
 
@@ -157,25 +159,25 @@
 
       <div class="philosophy-grid">
         <article class="philosophy-card">
-          <span class="philosophy-icon">⚡</span>
+          <span class="philosophy-icon"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg></span>
           <h3>Performance as a Feature</h3>
           <p>Sub-second load speeds, lightweight vanilla architecture, and zero unnecessary bloat ensure top SEO rankings and instant user engagement.</p>
         </article>
 
         <article class="philosophy-card">
-          <span class="philosophy-icon">🎨</span>
+          <span class="philosophy-icon"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg></span>
           <h3>Pixel-Perfect Fluid Design</h3>
           <p>Every interface is engineered mobile-first with smooth micro-interactions, consistent design tokens, and flawless cross-browser fidelity.</p>
         </article>
 
         <article class="philosophy-card">
-          <span class="philosophy-icon">🛡️</span>
+          <span class="philosophy-icon"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg></span>
           <h3>Scalable Architecture</h3>
           <p>Clean separation of concerns, modular JavaScript, resilient database models, and robust RESTful APIs built for long-term maintainability.</p>
         </article>
 
         <article class="philosophy-card">
-          <span class="philosophy-icon">🤝</span>
+          <span class="philosophy-icon"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="m21 3 1 11h-2"/><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/><path d="M3 4h8"/></svg></span>
           <h3>Transparent Collaboration</h3>
           <p>Direct communication, live milestone previews, transparent pricing, and ongoing post-launch technical support for complete peace of mind.</p>
         </article>
@@ -271,7 +273,7 @@
       <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
         <a href="contact.html" class="btn btn-primary btn-large">Start a Conversation →</a>
         <a href="projects.html" class="btn btn-secondary btn-large">Explore My Work</a>
-        <a href="https://wa.me/9988113050?text=Hello%20Gursimran,%20I%20read%20your%20about%20page%20and%20would%20like%20to%20connect" class="btn btn-secondary btn-large" target="_blank" rel="noopener noreferrer">💬 Chat on WhatsApp</a>
+        <a href="https://wa.me/9988113050?text=Hello%20Gursimran,%20I%20read%20your%20about%20page%20and%20would%20like%20to%20connect" class="btn btn-secondary btn-large" target="_blank" rel="noopener noreferrer"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Chat on WhatsApp</a>
       </div>
     </section>
   </main>
@@ -283,10 +285,10 @@
         <h4>Singh Web Creations</h4>
         <p>Full-Stack Web Developer &amp; UI Specialist</p>
         <div class="footer-contact-item">
-          <span>📞</span> Phone: <a href="tel:9988113050">9988113050</a>
+          <span><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span> Phone: <a href="tel:9988113050">9988113050</a>
         </div>
         <div class="footer-contact-item">
-          <span>✉️</span> Email: <a href="mailto:gursimransingh240608@gmail.com">gursimransingh240608@gmail.com</a>
+          <span><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span> Email: <a href="mailto:gursimransingh240608@gmail.com">gursimransingh240608@gmail.com</a>
         </div>
       </div>
 
@@ -323,5 +325,7 @@
 
   <script src="js/main.js"></script>
   <script src="js/auth.js"></script>
+  <script src="js/galaxy.js"></script>
 </body>
 </html>
+

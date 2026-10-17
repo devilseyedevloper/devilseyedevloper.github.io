@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -15,6 +15,8 @@
   <script src="js/supabase-config.js"></script>
 </head>
 <body class="auth-body">
+  <div id="galaxy-bg"><canvas id="galaxy-canvas"></canvas></div>
+  <div class="galaxy-vignette"></div>
   <!-- Top Navigation Bar -->
   <header class="auth-header">
     <div class="auth-header-inner">
@@ -152,11 +154,11 @@
           <!-- Live Password Requirements Checklist (for Sign up) -->
           <div id="passwordRequirements" class="password-requirements" style="display: none;">
             <div class="requirement-item" id="reqLength">
-              <span class="req-badge">✕</span>
+              <span class="req-badge"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span>
               <span>8+ characters</span>
             </div>
             <div class="requirement-item" id="reqAlphanumeric">
-              <span class="req-badge">✕</span>
+              <span class="req-badge"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span>
               <span>Letters and numbers only</span>
             </div>
           </div>
@@ -200,5 +202,7 @@
   </main>
 
   <script src="js/auth.js"></script>
+  <script src="js/galaxy.js"></script>
 </body>
 </html>
+

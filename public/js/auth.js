@@ -113,6 +113,9 @@ async function handleAuthPage() {
     status.textContent = message;
   };
 
+  const REQ_BADGE_OK = '<svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>';
+  const REQ_BADGE_NO = '<svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>';
+
   const updatePasswordRequirements = password => {
     if (!reqLength || !reqAlphanumeric) return;
     const isLengthOk = password.length >= 8;
@@ -120,11 +123,11 @@ async function handleAuthPage() {
 
     reqLength.classList.toggle('valid', isLengthOk);
     const badgeLength = reqLength.querySelector('.req-badge');
-    if (badgeLength) badgeLength.textContent = isLengthOk ? '✓' : '✕';
+    if (badgeLength) badgeLength.innerHTML = isLengthOk ? REQ_BADGE_OK : REQ_BADGE_NO;
 
     reqAlphanumeric.classList.toggle('valid', isAlphaNumOk);
     const badgeAlphaNum = reqAlphanumeric.querySelector('.req-badge');
-    if (badgeAlphaNum) badgeAlphaNum.textContent = isAlphaNumOk ? '✓' : '✕';
+    if (badgeAlphaNum) badgeAlphaNum.innerHTML = isAlphaNumOk ? REQ_BADGE_OK : REQ_BADGE_NO;
   };
 
   if (togglePasswordBtn && passwordInput && eyeIcon && eyeOffIcon) {
